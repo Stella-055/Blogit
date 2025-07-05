@@ -5,9 +5,9 @@ const Nav = () => {
     <div className='p-5 flex justify-between items-center border shadow-sm'> 
     <div className="flex items-center">
     <img src="/logoipsum-295.png" alt='logo' className="w-9"/>
-    <h3 className="text-indigo-600 font-bold">BlogIt</h3>
+    <h2 className="text-blue-500 font-bold">BlogIt</h2>
     </div>
-    <Button variant="contained" size="medium" href="/Login" sx={{backgroundColor:"black",color:"white"}}>LogIn</Button>
+    <Button variant="contained" size="medium" href="/Signin" sx={{backgroundColor:"black",color:"white"}}>SIGN IN</Button>
   </div>
   )
 }
