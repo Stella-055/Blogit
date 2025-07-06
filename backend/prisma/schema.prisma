@@ -13,3 +13,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+
+  id Int @id
+  firstname String @map("first_name")
+  lastname String @map("last_name")
+  username String  @unique@map("user_name")
+  useremail String @unique @map("user_email")
+  password String @map("user_password")
+   otp      Int?   
+  otpExpiresAt DateTime?
+  createdAt DateTime @default(now())
+
+  @@map("user")
+}

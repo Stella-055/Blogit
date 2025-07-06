@@ -46,7 +46,7 @@ const Signin = () => {
             </div>
 
           <Button variant="contained" fullWidth sx={{borderRadius:"10px",marginTop:"1rem"}}> Sign in</Button>
-            <p className="text-gray-500/90 text-sm mt-4">Don’t have an account? <a className="text-indigo-400 hover:underline" href="#Signup">Sign up</a></p>
+            <p className="text-gray-500/90 text-sm mt-4">Don’t have an account? <a className="text-indigo-400 hover:underline" href="/Signup">Sign up</a></p>
         </form>
     </div>
     </div>
