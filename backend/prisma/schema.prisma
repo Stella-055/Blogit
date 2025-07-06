@@ -16,7 +16,7 @@ datasource db {
 
 model User {
 
-  id Int @id
+  id String @id  @default(uuid())
   firstname String @map("first_name")
   lastname String @map("last_name")
   username String  @unique@map("user_name")
