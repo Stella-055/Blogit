@@ -1,4 +1,6 @@
+import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient();
 import   { Request, Response,NextFunction } from "express"
  export const checkinputs=(req:Request,res:Response,next:NextFunction)=>{
 
@@ -30,4 +32,28 @@ try {
 } catch (error) {
     res.status(500).json({message:"something went wrong"})
 }
+}
+
+export const checkemailandusername= async(req:Request,res:Response,next:NextFunction)=>{
+    try {
+        const{username,useremail}=req.body
+        const userName = await prisma.user.findFirst({
+            where:{username:username}
+        })
+        if(userName){
+            res.status(400).json({message:"user name already exists"})
+            return
+        }
+        const userEmail = await prisma.user.findFirst({
+            where:{useremail:useremail}
+        })
+        if(userEmail){
+            res.status(400).json({message:"Email already exists"})
+            return
+        }
+        next()
+    } catch (error) {
+        res.status(500).json({message:"something went wrong"})
+    }
+
 }

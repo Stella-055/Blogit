@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { signupauth } from "../Controllers/auth.controllers";
-import { checkinputs } from "../middlewares/auth";
+import { checkinputs,checkemailandusername } from "../middlewares/auth";
 const route= Router()
 
-route.post("/",checkinputs,signupauth)
+route.post("/",checkinputs,checkemailandusername,signupauth)
 
 export default route
