@@ -1,14 +1,13 @@
-import Hero from "../components/Hero"
-import Nav from "../components/Nav"
-
+import Hero from "../components/Hero";
+import Nav from "../components/Nav";
 
 const Welcome = () => {
   return (
     <>
-    <Nav/>
-      <Hero/>
+      <Nav />
+      <Hero />
     </>
-  )
-}
+  );
+};
 
-export default Welcome
+export default Welcome;
