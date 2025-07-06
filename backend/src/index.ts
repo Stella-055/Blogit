@@ -4,13 +4,15 @@ import cors from "cors"
 const app: Express = express();
 
 app.use(express.json())
-
+app.use(cors({
+   credentials:true
+}))
 
 app.get("/",(_req:Request,res:Response)=>{
 res.send("welcome to blogIt")
 } )
 app.use("/auth/signup",signuproute)
-//app.use("/auth/signup",signuproute)
+
 const port =process.env.PORT || 3000
 app.listen(port , ()=>{
     console.log(`server is up and running on port ${port}`)

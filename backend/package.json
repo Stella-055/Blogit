@@ -3,6 +3,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/zxcvbn": "^4.4.5",
     "prisma": "^6.11.1",
     "typescript": "^5.8.3"
   },
@@ -13,7 +14,8 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "zxcvbn": "^4.4.2"
   },
   "name": "backend",
   "version": "1.0.0",
