@@ -1,55 +1,60 @@
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { RiContactsLine } from "react-icons/ri";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 import { useMutation } from "@tanstack/react-query";
 import api from "../Api/Axios";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const SignUp = () => {
-  type formdata={
-    firstname:string
-    lastname:string
-    username:string
-    useremail:string
-    password:string
-  }
+  type formdata = {
+    firstname: string;
+    lastname: string;
+    username: string;
+    useremail: string;
+    password: string;
+  };
 
-  const [formData, setFormData]=useState<formdata>({firstname:"",
-    lastname:"",username:"",useremail:"",password:""
-  })
- const [formError,setFormError]=useState<null|String>()
- const[confirmpswd ,setConfirmpswd]=useState("")
- const navigate=useNavigate()
+  const [formData, setFormData] = useState<formdata>({
+    firstname: "",
+    lastname: "",
+    username: "",
+    useremail: "",
+    password: "",
+  });
+  const [formError, setFormError] = useState<null | String>();
+  const [confirmpswd, setConfirmpswd] = useState("");
+  const navigate = useNavigate();
 
-const{isPending,mutate}=useMutation({
-    mutationKey:["signup"],
-    mutationFn:async(user:formdata)=>{
-        const result= await api.post("/auth/signup",user)
-        return result.data
+  const { isPending, mutate } = useMutation({
+    mutationKey: ["signup"],
+    mutationFn: async (user: formdata) => {
+      const result = await api.post("/auth/signup", user);
+      return result.data;
     },
-  
-      onError: (error) => {
-        if(axios.isAxiosError(error)){
-            console.log(error)
-          setFormError(error.response?.data.message)
-          return
-        }else{
-            setFormError("something went wrong") 
-            return
-        }
-      },  onSuccess: () => {
-        navigate("/signin")
-      },
-})
 
- function submitform(){
-  
-    if(!(confirmpswd==formData.password)){
-     setFormError("password and confirm password dont match")
-    return}
-    mutate(formData)
- }
+    onError: (error) => {
+      if (axios.isAxiosError(error)) {
+        console.log(error);
+        setFormError(error.response?.data.message);
+        return;
+      } else {
+        setFormError("something went wrong");
+        return;
+      }
+    },
+    onSuccess: () => {
+      navigate("/signin");
+    },
+  });
+
+  function submitform() {
+    if (!(confirmpswd == formData.password)) {
+      setFormError("password and confirm password dont match");
+      return;
+    }
+    mutate(formData);
+  }
   return (
     <div className="flex h-screen justify-center items-center flex-wrap ">
       <img className="w-96" src="/ww.jpg" alt="leftSideImage" />
@@ -66,16 +71,16 @@ const{isPending,mutate}=useMutation({
             <h3 className="text-blue-500 font-bold">BlogIt</h3>
           </div>
           <div className="w-full ">
-            {formError &&<Alert severity="error">{formError}</Alert> }
-          
+            {formError && <Alert severity="error">{formError}</Alert>}
+
             <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2 mt-2">
               <RiContactsLine color="gray" />
               <input
                 type="text"
                 placeholder="First Name"
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                onChange={(e)=>{
-                    setFormData({...formData,firstname:e.target.value})
+                onChange={(e) => {
+                  setFormData({ ...formData, firstname: e.target.value });
                 }}
               />
             </div>
@@ -85,8 +90,8 @@ const{isPending,mutate}=useMutation({
                 type="text"
                 placeholder="Last Name"
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                onChange={(e)=>{
-                    setFormData({...formData,lastname:e.target.value})
+                onChange={(e) => {
+                  setFormData({ ...formData, lastname: e.target.value });
                 }}
               />
             </div>
@@ -96,8 +101,8 @@ const{isPending,mutate}=useMutation({
                 type="text"
                 placeholder="User Name"
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                onChange={(e)=>{
-                    setFormData({...formData,username:e.target.value})
+                onChange={(e) => {
+                  setFormData({ ...formData, username: e.target.value });
                 }}
               />
             </div>
@@ -120,8 +125,8 @@ const{isPending,mutate}=useMutation({
                 type="email"
                 placeholder="Email id"
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                onChange={(e)=>{
-                    setFormData({...formData,useremail:e.target.value})
+                onChange={(e) => {
+                  setFormData({ ...formData, useremail: e.target.value });
                 }}
               />
             </div>
@@ -143,8 +148,8 @@ const{isPending,mutate}=useMutation({
                 type="password"
                 placeholder="Password"
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                onChange={(e)=>{
-                    setFormData({...formData,password:e.target.value})
+                onChange={(e) => {
+                  setFormData({ ...formData, password: e.target.value });
                 }}
               />
             </div>
@@ -165,8 +170,8 @@ const{isPending,mutate}=useMutation({
                 type="password"
                 placeholder=" confirm Password"
                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                onChange={(e)=>{
-                    setConfirmpswd(e.target.value)
+                onChange={(e) => {
+                  setConfirmpswd(e.target.value);
                 }}
               />
             </div>
