@@ -28,10 +28,10 @@ export const signinauth = async (req: Request, res: Response) => {
         useremail: useremail,
       },
     });
-    const { id, firstname, lastname, username } = userdetails!;
+    const {  firstname, lastname, username } = userdetails!;
 
     const token = jwt.sign(
-      { id, firstname, lastname, username },
+      {  firstname, lastname, username },
       process.env.JWT_SECRET!,
       { expiresIn: "1h" },
     );
@@ -39,7 +39,7 @@ export const signinauth = async (req: Request, res: Response) => {
     res
       .cookie("signintoken", token)
       .status(200)
-      .json({ message: "signed in successfully" });
+      .json({ username:username,lastname:lastname,firstname:firstname });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }

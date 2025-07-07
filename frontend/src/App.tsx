@@ -2,6 +2,7 @@ import Welcome from "./pages/Welcome";
 import { Routes, Route } from "react-router-dom";
 import Signin from "./pages/Signin";
 import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   );

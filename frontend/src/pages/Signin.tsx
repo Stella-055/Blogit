@@ -7,7 +7,9 @@ import { useMutation } from "@tanstack/react-query";
 import api from "../Api/Axios";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useUser from "../stores/userStore";
 const Signin = () => {
+  const{setUserName}=useUser()
   type formdata = {
    
     useremail: string;
@@ -39,7 +41,9 @@ const Signin = () => {
         return;
       }
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+    
+      setUserName({username:data.username})
       navigate("/dashboard");
     },
   });
