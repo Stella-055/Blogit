@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import Alert from "@mui/material/Alert";
 import { useMutation } from "@tanstack/react-query";
 import api from "../Api/Axios";
@@ -18,7 +19,7 @@ const Signin = () => {
     password: "",
   });
   const [formError, setFormError] = useState<null | String>();
- 
+  const [pswdvisibility,setPswdVisibility]=useState(false)
   const navigate = useNavigate();
 
   const { isPending, mutate } = useMutation({
@@ -90,7 +91,7 @@ const Signin = () => {
             />
           </div>
 
-          <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
+          <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
             <svg
               width="13"
               height="17"
@@ -104,13 +105,16 @@ const Signin = () => {
               />
             </svg>
             <input
-              type="password"
+              type={pswdvisibility?"text":"password"}
               placeholder="Password"
+              
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
               onChange={(e)=>{
                 setFormData({...formData ,password:e.target.value})
                }}
             />
+
+            {pswdvisibility?<FaEye size={20} onClick={()=>setPswdVisibility(!pswdvisibility)} />:<FaEyeSlash size={20} onClick={()=>setPswdVisibility(!pswdvisibility)} />}
           </div>
 
           <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">
