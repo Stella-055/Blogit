@@ -1,9 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import zxcvbn from "zxcvbn";
-import  bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 import { Request, Response, NextFunction } from "express";
 const prisma = new PrismaClient();
-
 
 export const checkinputs = (
   req: Request,
@@ -32,7 +31,6 @@ export const checkinputs = (
       res.status(400).json({ message: "please provide a password" });
       return;
     }
-   
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
@@ -83,33 +81,33 @@ export const checkpasswordstrength = (
   }
 };
 
- export const signinemailpswdcheck = async(req: Request, res: Response,next:NextFunction)=>{
+export const signinemailpswdcheck = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const {useremail,password}=req.body
+    const { useremail, password } = req.body;
 
     const userdetails = await prisma.user.findFirst({
-      where:{
-        useremail:useremail
-      }
-    })
+      where: {
+        useremail: useremail,
+      },
+    });
 
-    if (!userdetails){
-      res.status(400).json({message:"wrong signin credentials"})
-      return
+    if (!userdetails) {
+      res.status(400).json({ message: "wrong signin credentials" });
+      return;
     }
- 
-    const unhashedpswd=await bcrypt.compare(password,userdetails.password)
 
-    if(!unhashedpswd){
-      res.status(400).json({message:"wrong signin credentials"})
-      return
+    const unhashedpswd = await bcrypt.compare(password, userdetails.password);
+
+    if (!unhashedpswd) {
+      res.status(400).json({ message: "wrong signin credentials" });
+      return;
     }
-   next()
+    next();
   } catch (error) {
-    res.status(500).json({message:"something went wrong"})
+    res.status(500).json({ message: "something went wrong" });
   }
-
-
-}
-
-
+};

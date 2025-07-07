@@ -1,14 +1,14 @@
 import express, { Request, Response, Express } from "express";
 import signuproute from "./Routes/signup";
-import signinroute from "./Routes/signin"
+import signinroute from "./Routes/signin";
 import cors from "cors";
-import cookie from "cookie-parser"
+import cookie from "cookie-parser";
 const app: Express = express();
-app.use(cookie())
+app.use(cookie());
 app.use(express.json());
 app.use(
   cors({
-    origin:"http://localhost:5173",
+    origin: "http://localhost:5173",
     credentials: true,
   }),
 );
