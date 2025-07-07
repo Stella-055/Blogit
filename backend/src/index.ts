@@ -1,8 +1,10 @@
 import express, { Request, Response, Express } from "express";
 import signuproute from "./Routes/signup";
+import signinroute from "./Routes/signin"
 import cors from "cors";
+import cookie from "cookie-parser"
 const app: Express = express();
-
+app.use(cookie())
 app.use(express.json());
 app.use(
   cors({
@@ -15,6 +17,7 @@ app.get("/", (_req: Request, res: Response) => {
   res.send("welcome to blogIt");
 });
 app.use("/auth/signup", signuproute);
+app.use("/auth/signin", signinroute);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient,User } from "@prisma/client";
+import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
@@ -17,3 +18,29 @@ export const signupauth = async (req: Request, res: Response) => {
     res.status(500).json({ message: "something went wrong" });
   }
 };
+
+
+export const signinauth =async(req: Request, res: Response)=>{
+  try {
+    const {useremail}=req.body
+
+    const userdetails = await prisma.user.findFirst({
+      where:{
+        useremail:useremail
+      }
+    })
+    const { id, firstname, lastname, username } = userdetails!;
+  
+    const token = jwt.sign(
+      { id, firstname, lastname, username },
+      process.env.JWT_SECRET!,
+      { expiresIn: "1h" } 
+    );
+
+  res.cookie("signintoken",token).status(200).json({message:"signed in successfully"})
+    
+  } catch (error) {
+    res.status(500).json({message:"something went wrong"})
+  }
+
+}

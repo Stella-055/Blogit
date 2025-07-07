@@ -1,8 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import zxcvbn from "zxcvbn";
-
-const prisma = new PrismaClient();
+import  bcrypt from 'bcrypt';
 import { Request, Response, NextFunction } from "express";
+const prisma = new PrismaClient();
+
+
 export const checkinputs = (
   req: Request,
   res: Response,
@@ -30,7 +32,7 @@ export const checkinputs = (
       res.status(400).json({ message: "please provide a password" });
       return;
     }
-    next();
+   
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
@@ -80,3 +82,34 @@ export const checkpasswordstrength = (
     res.status(500).json({ message: "something went wrong" });
   }
 };
+
+ export const signinemailpswdcheck = async(req: Request, res: Response,next:NextFunction)=>{
+  try {
+    const {useremail,password}=req.body
+
+    const userdetails = await prisma.user.findFirst({
+      where:{
+        useremail:useremail
+      }
+    })
+
+    if (!userdetails){
+      res.status(400).json({message:"wrong signin credentials"})
+      return
+    }
+ 
+    const unhashedpswd=await bcrypt.compare(password,userdetails.password)
+
+    if(!unhashedpswd){
+      res.status(400).json({message:"wrong signin credentials"})
+      return
+    }
+   next()
+  } catch (error) {
+    res.status(500).json({message:"something went wrong"})
+  }
+
+
+}
+
+
