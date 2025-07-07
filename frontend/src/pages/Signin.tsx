@@ -1,6 +1,54 @@
 import { Button } from "@mui/material";
+import { useState } from "react";
 
+import Alert from "@mui/material/Alert";
+import { useMutation } from "@tanstack/react-query";
+import api from "../Api/Axios";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Signin = () => {
+  type formdata = {
+   
+    useremail: string;
+    password: string;
+  };
+
+  const [formData, setFormData] = useState<formdata>({
+    useremail: "",
+    password: "",
+  });
+  const [formError, setFormError] = useState<null | String>();
+ 
+  const navigate = useNavigate();
+
+  const { isPending, mutate } = useMutation({
+    mutationKey: ["signup"],
+    mutationFn: async (user: formdata) => {
+      const result = await api.post("/auth/signin", user);
+      return result.data;
+    },
+
+    onError: (error) => {
+      if (axios.isAxiosError(error)) {
+        console.log(error);
+        setFormError(error.response?.data.message);
+        return;
+      } else {
+        setFormError("something went wrong");
+        return;
+      }
+    },
+    onSuccess: () => {
+      navigate("/dashboard");
+    },
+  });
+
+  function submitform() {
+   
+    mutate(formData);
+  }
+
+
   return (
     <div className="flex h-screen justify-center items-center flex-wrap ">
       <img className="w-96" src="/ww.jpg" alt="leftSideImage" />
@@ -16,7 +64,7 @@ const Signin = () => {
             <img src="/logoipsum-295.png" alt="logo" className="w-9" />
             <h3 className="text-blue-500 font-bold">BlogIt</h3>
           </div>
-
+ {formError && <Alert severity="error">{formError}</Alert>}
           <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
             <svg
               width="16"
@@ -36,7 +84,9 @@ const Signin = () => {
               type="email"
               placeholder="Email id"
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-              required
+             onChange={(e)=>{
+              setFormData({...formData ,useremail:e.target.value})
+             }}
             />
           </div>
 
@@ -57,7 +107,9 @@ const Signin = () => {
               type="password"
               placeholder="Password"
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-              required
+              onChange={(e)=>{
+                setFormData({...formData ,password:e.target.value})
+               }}
             />
           </div>
 
@@ -75,6 +127,8 @@ const Signin = () => {
             variant="contained"
             fullWidth
             sx={{ borderRadius: "10px", marginTop: "1rem" }}
+            onClick={submitform}
+            loading={isPending}
           >
             {" "}
             Sign in
