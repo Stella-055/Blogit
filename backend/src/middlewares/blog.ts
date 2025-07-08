@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt ,{JwtPayload,VerifyErrors} from "jsonwebtoken";
 
 import { userdetails } from '../types/type.d';
-const checkvaliduser= async(req:Request,res:Response,next:NextFunction)=>{
+ export const checkvaliduser= async(req:Request,res:Response,next:NextFunction)=>{
  const{signintoken}=req.cookies
  if(!signintoken){
     res.status(401).json({message:"unauthorized user"})

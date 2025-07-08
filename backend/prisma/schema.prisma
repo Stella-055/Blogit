@@ -25,6 +25,21 @@ model User {
    otp      Int?   
   otpExpiresAt DateTime?
   createdAt DateTime @default(now())
-
+  blog  Blog[]
   @@map("user")
+}
+
+
+model Blog{
+id String @id @default(uuid())
+title String @map("blog_title")
+synopsis String @map("blog_synopsis")
+content String @map("blog_content")
+authorId String @map("ownerid")
+createdAt DateTime @default(now())
+lastUpdated DateTime @default(now())
+isDeleted Boolean @default(false)
+user User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+@@map("blog")
+
 }
