@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Posts from "./components/Posts";
 import Createblog from "./components/Createblog";
 import Profile from "./components/Profile";
+import Protected from "./components/Protected";
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard />}  >
-         <Route path="Blogs" element={<Posts/>}/>
-         <Route path="Createblog" element={<Createblog/>}/>
-         <Route path="Profile" element={<Profile/>}/>
+        <Route path="/dashboard" element={<Protected><Dashboard /></Protected>}  >
+         <Route path="Blogs" element={<Protected><Posts/></Protected>}/>
+         <Route path="Createblog" element={<Protected><Createblog/></Protected>}/>
+         <Route path="Profile" element={<Protected><Profile/></Protected>}/>
         </Route>
       </Routes>
     </>
