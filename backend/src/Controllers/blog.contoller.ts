@@ -1,17 +1,15 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
- const prisma =new PrismaClient
- export const createblog=async(req:Request,res:Response)=>{
-    try {
-        
-   
-    const{id}=req.owner
-const{title,synopsis,content}=req.body
-const newblog=await prisma.blog.create({
-    data:{title,synopsis,content,authorId :id }
-})
-res.status(200).json({ message: "user created successfully" });
-} catch (error) {
-    res.status(500).json({ message: "something went wrong" });    
-}
-}
+const prisma = new PrismaClient();
+export const createblog = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.owner;
+    const { title, synopsis, content } = req.body;
+    const newblog = await prisma.blog.create({
+      data: { title, synopsis, content, authorId: id },
+    });
+    res.status(200).json({ message: "user created successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};

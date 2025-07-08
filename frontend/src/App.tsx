@@ -15,10 +15,38 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<SignUp />} />
-        <Route path="/dashboard" element={<Protected><Dashboard /></Protected>}  >
-         <Route path="Blogs" element={<Protected><Posts/></Protected>}/>
-         <Route path="Createblog" element={<Protected><Createblog/></Protected>}/>
-         <Route path="Profile" element={<Protected><Profile/></Protected>}/>
+        <Route
+          path="/dashboard"
+          element={
+            <Protected>
+              <Dashboard />
+            </Protected>
+          }
+        >
+          <Route
+            path="Blogs"
+            element={
+              <Protected>
+                <Posts />
+              </Protected>
+            }
+          />
+          <Route
+            path="Createblog"
+            element={
+              <Protected>
+                <Createblog />
+              </Protected>
+            }
+          />
+          <Route
+            path="Profile"
+            element={
+              <Protected>
+                <Profile />
+              </Protected>
+            }
+          />
         </Route>
       </Routes>
     </>

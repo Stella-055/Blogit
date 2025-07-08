@@ -9,9 +9,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useUser from "../stores/userStore";
 const Signin = () => {
-  const{setUserName}=useUser()
+  const { setUserName } = useUser();
   type formdata = {
-   
     useremail: string;
     password: string;
   };
@@ -21,7 +20,7 @@ const Signin = () => {
     password: "",
   });
   const [formError, setFormError] = useState<null | String>();
-  const [pswdvisibility,setPswdVisibility]=useState(false)
+  const [pswdvisibility, setPswdVisibility] = useState(false);
   const navigate = useNavigate();
 
   const { isPending, mutate } = useMutation({
@@ -42,17 +41,14 @@ const Signin = () => {
       }
     },
     onSuccess: (data) => {
-    
-      setUserName({username:data.username})
+      setUserName({ username: data.username });
       navigate("/dashboard");
     },
   });
 
   function submitform() {
-   
     mutate(formData);
   }
-
 
   return (
     <div className="flex h-screen justify-center items-center flex-wrap ">
@@ -69,7 +65,7 @@ const Signin = () => {
             <img src="/logoipsum-295.png" alt="logo" className="w-9" />
             <h3 className="text-blue-500 font-bold">BlogIt</h3>
           </div>
- {formError && <Alert severity="error">{formError}</Alert>}
+          {formError && <Alert severity="error">{formError}</Alert>}
           <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
             <svg
               width="16"
@@ -89,9 +85,9 @@ const Signin = () => {
               type="email"
               placeholder="Email id"
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-             onChange={(e)=>{
-              setFormData({...formData ,useremail:e.target.value})
-             }}
+              onChange={(e) => {
+                setFormData({ ...formData, useremail: e.target.value });
+              }}
             />
           </div>
 
@@ -109,16 +105,25 @@ const Signin = () => {
               />
             </svg>
             <input
-              type={pswdvisibility?"text":"password"}
+              type={pswdvisibility ? "text" : "password"}
               placeholder="Password"
-              
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
-              onChange={(e)=>{
-                setFormData({...formData ,password:e.target.value})
-               }}
+              onChange={(e) => {
+                setFormData({ ...formData, password: e.target.value });
+              }}
             />
 
-            {pswdvisibility?<FaEye size={20} onClick={()=>setPswdVisibility(!pswdvisibility)} />:<FaEyeSlash size={20} onClick={()=>setPswdVisibility(!pswdvisibility)} />}
+            {pswdvisibility ? (
+              <FaEye
+                size={20}
+                onClick={() => setPswdVisibility(!pswdvisibility)}
+              />
+            ) : (
+              <FaEyeSlash
+                size={20}
+                onClick={() => setPswdVisibility(!pswdvisibility)}
+              />
+            )}
           </div>
 
           <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">

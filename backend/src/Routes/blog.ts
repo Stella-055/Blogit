@@ -1,8 +1,8 @@
 import { createblog } from "../Controllers/blog.contoller";
-import  { checkvaliduser ,checkbloginputs} from '../middlewares/blog';
+import { checkvaliduser, checkbloginputs } from "../middlewares/blog";
 import { Router } from "express";
 
-const route =Router()
+const route = Router();
 
-route.post("/",checkvaliduser,checkbloginputs,createblog)
-export default route
+route.post("/", checkvaliduser, checkbloginputs, createblog);
+export default route;

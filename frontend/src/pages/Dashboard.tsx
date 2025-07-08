@@ -1,13 +1,13 @@
 import Nav from "../components/Nav";
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
     <>
-      <Nav/>
-      <Outlet/>
+      <Nav />
+      <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
