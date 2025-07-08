@@ -30,7 +30,7 @@ export const checkinputs = (
     if (!password) {
       res.status(400).json({ message: "please provide a password" });
       return;
-    }
+    } next()
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
