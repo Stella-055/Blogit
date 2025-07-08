@@ -1,4 +1,4 @@
-interface userdetails{
+ export interface userdetails{
 
 
     id:string
