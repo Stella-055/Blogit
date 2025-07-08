@@ -1,9 +1,8 @@
 import { useState,useRef } from "react";
-
-const Post = () => {
-    const [visible, setVisible] = useState(false);
+const Posts = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const divRef = useRef<HTMLInputElement>(null);
+    const [tooltipVisible, setTooltipVisible] = useState(false);
+    const divRef = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e:React.MouseEvent) => {
         const bounds = (divRef.current)!.getBoundingClientRect();
@@ -11,14 +10,20 @@ const Post = () => {
     };
 
     return (
-        <div ref={divRef} onMouseMove={handleMouseMove} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}
-            className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm ml-6"
+        <div ref={divRef} onMouseMove={handleMouseMove} onMouseEnter={() => setTooltipVisible(true)} onMouseLeave={() => setTooltipVisible(false)}
+            className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm"
         >
-              {visible && (
-                <div className="pointer-events-none blur-xl bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 size-60 absolute z-0 transition-opacity duration-300"
-                    style={{ top: - 300, left: position.x - 300,}}
-                />
-            )}
+            <span className="absolute px-2 py-1 z-10 whitespace-nowrap text-sm rounded bg-white/20 border border-gray-200 backdrop-blur-[4px] text-gray-900 font-medium pointer-events-none"
+                style={{
+                    top: position.y + 10,
+                    left: position.x + 10,
+                    opacity: tooltipVisible ? 1 : 0,
+                    transform: tooltipVisible ? 'scale(1)' : 'scale(0.6)',
+                    transition: 'all 0.2s ease-out',
+                }}
+            >
+                Author: John Doe
+            </span>
 
             <a href="#">
                 <img className="rounded-t-lg w-96 h-56 object-cover object-top" src="https://images.unsplash.com/photo-1560264418-c4445382edbc?q=80&w=800" alt="" />
@@ -40,4 +45,4 @@ const Post = () => {
         </div>
     );
 };
-export default Post
+export default Posts
