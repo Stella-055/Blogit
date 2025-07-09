@@ -10,7 +10,7 @@ import Protected from "./components/Protected";
 
 function App() {
   return (
-    <>
+    <div >
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/Signin" element={<Signin />} />
@@ -49,7 +49,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

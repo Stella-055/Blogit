@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const Nav = () => {
   const { user } = useUser();
   return (
-    <div className="p-5 flex justify-between items-center border shadow-sm">
+    <div className="p-5 flex justify-between items-center border shadow-sm bg-white">
       <div className="flex items-center">
         <img src="/logoipsum-295.png" alt="logo" className="w-9" />
         <h1 className="text-blue-500 font-bold text-2xl">BlogIt</h1>

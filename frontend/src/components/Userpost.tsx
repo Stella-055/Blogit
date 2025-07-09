@@ -7,12 +7,12 @@ import {
   import { FaPen } from "react-icons/fa";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { MdBrowserUpdated } from "react-icons/md";
+
 const Userpost = () => {
   return (
-    <div className="mt-4 w-full flex flex-col justify-center items-center mb-3">
+    <div  className="mt-4  flex flex-col items-center mb-3">
        <p className="text-xs bg-blue-200 text-blue-600 font-medium px-3 py-2 rounded-full my-2">Your Blogs</p> 
-      <div className="flex border-solid border-gray-500 p-2 border-2 text-gray-500 w-2/4 justify-around"> <span>1.</span>cooking chapatis <div className="gap-2 flex"> <button><FaPen size={20}/></button> <Popover>
+      <div style={{width:"30rem"}} className="flex border-solid border-gray-500 p-2 border-2 text-gray-500  justify-around"> <span>1.</span>cooking chapatis <div className="gap-2 flex"> <button><FaPen size={20}/></button> <Popover>
   <PopoverTrigger><IconButton aria-label="delete">
   <DeleteIcon />
 </IconButton></PopoverTrigger>

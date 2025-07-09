@@ -12,13 +12,13 @@ const Profiledetails = () => {
       };
     const [userprofile, setUserprofile]=useState<UserProfile>({username:"-",useremail:"-",firstname:"-",lastname:"-",password:"-"})
 
-    const {data,isLoading,error} = useQuery({
+    const {data} = useQuery({
         queryKey: ["get-user-details"],
         queryFn: async () => {
           const response = await api.get(
             "/user/details",
           );
-          console.log(response.data)
+          
           return response.data;
         },
         
@@ -48,12 +48,12 @@ const Profiledetails = () => {
    
     
     <div className="max-w-96 w-full px-4">
-    <label htmlFor="email" className="font-medium mt-4  text-gray-500">User Name</label>
+    <label htmlFor="username" className="font-medium mt-4  text-gray-500">User Name</label>
         <div className="flex items-center mt-2 mb-4 h-10 pl-3 border border-gray-400 rounded-full focus-within:ring-2 focus-within:ring-gray-400 transition-all overflow-hidden">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.5 3.438h-15a.937.937 0 0 0-.937.937V15a1.563 1.563 0 0 0 1.562 1.563h13.75A1.563 1.563 0 0 0 18.438 15V4.375a.94.94 0 0 0-.938-.937m-2.41 1.874L10 9.979 4.91 5.313zM3.438 14.688v-8.18l5.928 5.434a.937.937 0 0 0 1.268 0l5.929-5.435v8.182z" fill="#475569"/>
             </svg>
-            <input id="email" type="email" className="h-full  text-gray-500 px-2 w-full outline-none bg-transparent"  value={userprofile.username}/>
+            <input id="username" type="email" className="h-full  text-gray-500 px-2 w-full outline-none bg-transparent"  value={userprofile.username}/>
         </div>
         <label htmlFor="name" className="font-medium text-gray-500">First Name</label>
         <div className="flex items-center mt-2 mb-4 h-10 pl-3 border border-gray-400 rounded-full focus-within:ring-2 focus-within:ring-gray-400 transition-all overflow-hidden">

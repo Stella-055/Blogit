@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import Avatar from '@mui/material/Avatar';
 
-
+import { useQuery } from "@tanstack/react-query";
+import api from "@/Api/Axios";
 
 const Posts = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -12,7 +13,21 @@ const Posts = () => {
     const bounds = divRef.current!.getBoundingClientRect();
     setPosition({ x: e.clientX - bounds.left, y: e.clientY - bounds.top });
   };
-
+  const {data,isLoading} = useQuery({
+    queryKey: ["get-user-posts"],
+    queryFn: async () => {
+      const response = await api.get(
+        "/user/blog",
+      );
+      
+      return response.data;
+    },
+    
+  })
+  if(isLoading){
+    return
+  }
+  
   return (
     <div
       ref={divRef}
