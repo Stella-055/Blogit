@@ -1,7 +1,8 @@
 import express, { Request, Response, Express } from "express";
 import signuproute from "./Routes/signup";
 import signinroute from "./Routes/signin";
-import createblogroute from "./Routes/blog";
+import userdetailsroute from "./Routes/userdetails";
+import userblogroute from "./Routes/blog";
 import cors from "cors";
 import cookie from "cookie-parser";
 const app: Express = express();
@@ -19,8 +20,8 @@ app.get("/", (_req: Request, res: Response) => {
 });
 app.use("/auth/signup", signuproute);
 app.use("/auth/signin", signinroute);
-app.use("/create/blog", createblogroute);
-
+app.use("/user/blog", userblogroute);
+app.use("/user/details", userdetailsroute);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`server is up and running on port ${port}`);

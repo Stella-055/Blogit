@@ -8,10 +8,12 @@ import { IoSettings } from "react-icons/io5";
 import { MdLiveHelp } from "react-icons/md";
 import Profiledetails from './Profiledetails';
 import Userpost from './Userpost';
+
 const Profile = () => {
+   
   return <>
   <div className=' flex  flex-col justify-center items-center bg-gray-100 ' > 
-  <div className='flex items-center justify-around w-6/12'>
+  <div className='flex items-center gap-4 justify-center flex-wrap w-full'>
  
   <div className='flex flex-col  justify-center items-center h-full gap-x-1.5 '>
 
