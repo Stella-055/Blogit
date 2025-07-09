@@ -1,4 +1,8 @@
 import { useState, useRef } from "react";
+import Avatar from '@mui/material/Avatar';
+
+
+
 const Posts = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -15,7 +19,7 @@ const Posts = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setTooltipVisible(true)}
       onMouseLeave={() => setTooltipVisible(false)}
-      className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm"
+      className="relative w-80 bg-white border border-gray-200 rounded-lg shadow-sm"
     >
       <span
         className="absolute px-2 py-1 z-10 whitespace-nowrap text-sm rounded bg-white/20 border border-gray-200 backdrop-blur-[4px] text-gray-900 font-medium pointer-events-none"
@@ -44,9 +48,10 @@ const Posts = () => {
           </h5>
         </a>
         <p className="mb-3 font-mal text-gray-700">
-          Explore how artificial intelligence is reshaping industries, enhancing
-          productivity, and opening new career paths in the modern workforce.
+          Explore how artificial intelligence is reshaping industries...
         </p>
+
+        <div className="flex items-center"> <Avatar alt="Remy Sharp"    src="/static/images/avatar/1.jpg" /> <h3>Rowan tugi</h3><h3> june 24th  </h3></div>
         <a
           href="#"
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-indigo-300"

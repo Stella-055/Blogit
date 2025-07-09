@@ -29,7 +29,7 @@ const Profile = () => {
               to="/dashboard/Profile"
               className={({ isActive }) =>
                 isActive
-                  ? "bg-gray-300 text-gray-500 rounded flex border-solid border-gray-500  border-2 items-center justify-around p-1  mb-2"
+                  ? "bg-gray-500 text-white rounded flex border-solid border-gray-500  border-2 items-center justify-around p-1  mb-2"
                   : "bg-gray-100 border-solid border-gray-500  border-2 text-gray-500 transition-all hover:bg-gray-500 hover:text-white rounded w-full flex  justify-around items-center p-1 mb-2 "
               }
             >
@@ -41,7 +41,7 @@ const Profile = () => {
               to="$"
               className={({ isActive }) =>
                 isActive
-              ? "bg-gray-300 text-gray-500 rounded border-solid border-gray-500  border-2flex items-center justify-around p-1  mb-2"
+              ? "bg-gray-500 text-white rounded border-solid border-gray-500  border-2flex items-center justify-around p-1  mb-2"
                   : "bg-gray-100 border-solid border-gray-500  border-2 text-gray-500 transition-all hover:bg-gray-500 hover:text-white rounded w-full flex  justify-around items-center p-1 mb-2 "
               }
             >
@@ -51,7 +51,7 @@ const Profile = () => {
               to="/asd"
               className={({ isActive }) =>
                 isActive
-              ? "bg-gray-300 text-gray-500 rounded border-solid border-gray-500  border-2flex items-center justify-around p-1  mb-2"
+              ? "bg-gray-500 text-white rounded border-solid border-gray-500  border-2flex items-center justify-around p-1  mb-2"
                   : "bg-gray-100 border-solid border-gray-500  border-2 text-gray-500 transition-all hover:bg-gray-500 hover:text-white rounded w-full flex  justify-around items-center p-1 mb-2 "
               }
             >
@@ -61,7 +61,7 @@ const Profile = () => {
               to="/das"
               className={({ isActive }) =>
                 isActive
-              ? "bg-gray-300 text-gray-500 rounded border-solid border-gray-500  border-2 flex items-center justify-around p-1  mb-2"
+              ? "bg-gray-500 text-white rounded border-solid border-gray-500  border-2 flex items-center justify-around p-1  mb-2"
                   : "bg-gray-100 border-solid border-gray-500  border-2 text-gray-500 transition-all hover:bg-gray-500 hover:text-white rounded w-full flex  justify-around items-center p-1 mb-2 "
               }
             >
