@@ -1,53 +1,58 @@
 import { useState, useRef } from "react";
 import Avatar from '@mui/material/Avatar';
-
+import useUser from "@/stores/userStore";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/Api/Axios";
 
-const Posts = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-  const divRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const bounds = divRef.current!.getBoundingClientRect();
-    setPosition({ x: e.clientX - bounds.left, y: e.clientY - bounds.top });
-  };
-  const {data,isLoading} = useQuery({
+const Posts = () => {
+
+
+ 
+const {user}=useUser()
+
+  type userblog={
+  
+    id: string,
+        title: string,
+        synopsis: string,
+        content: string,
+        authorId: string,
+        createdAt: string
+        lastUpdated: string,
+        isDeleted:boolean
+    
+  }
+  const {data,isLoading,error} = useQuery({
     queryKey: ["get-user-posts"],
     queryFn: async () => {
       const response = await api.get(
         "/user/blog",
       );
-      
+ 
       return response.data;
     },
     
   })
   if(isLoading){
-    return
+    return <img src="/Loading_2.gif" alt="" />
   }
-  
+  if(error){
+    return <img src="/smtwrong.gif" alt="" />
+  }
+  if (!data || data.length === 0) {
+    return <img src="/nothing.jpg" alt="No posts found" />;
+  }
   return (
+    <div className="flex justify-center items-center gap-2 w-full h-full" >
+      {data.map((blog:userblog,index:number)=>{
+      return  (
     <div
-      ref={divRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setTooltipVisible(true)}
-      onMouseLeave={() => setTooltipVisible(false)}
+    key={index}
+     
       className="relative w-80 bg-white border border-gray-200 rounded-lg shadow-sm"
     >
-      <span
-        className="absolute px-2 py-1 z-10 whitespace-nowrap text-sm rounded bg-white/20 border border-gray-200 backdrop-blur-[4px] text-gray-900 font-medium pointer-events-none"
-        style={{
-          top: position.y + 10,
-          left: position.x + 10,
-          opacity: tooltipVisible ? 1 : 0,
-          transform: tooltipVisible ? "scale(1)" : "scale(0.6)",
-          transition: "all 0.2s ease-out",
-        }}
-      >
-        Author: John Doe
-      </span>
+     
 
       <a href="#">
         <img
@@ -59,17 +64,17 @@ const Posts = () => {
       <div className="p-5">
         <a href="#">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-            How AI is Transforming the Future of Work
+           {blog.title}
           </h5>
         </a>
         <p className="mb-3 font-mal text-gray-700">
-          Explore how artificial intelligence is reshaping industries...
+        {blog.synopsis}
         </p>
 
-        <div className="flex items-center"> <Avatar alt="Remy Sharp"    src="/static/images/avatar/1.jpg" /> <h3>Rowan tugi</h3><h3> june 24th  </h3></div>
+        <div className="flex items-center mb-2 gap-2"> <Avatar alt={user?.username}    src="/static/images/avatar/1.jpg" /> <h3 >{user?.username}</h3><h3> {blog.createdAt} </h3></div>
         <a
           href="#"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-indigo-300"
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           Read more
           <svg
@@ -89,7 +94,8 @@ const Posts = () => {
           </svg>
         </a>
       </div>
-    </div>
+    </div> )
+      })}</div>
   );
 };
 export default Posts;
