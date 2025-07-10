@@ -27,3 +27,16 @@ export const fetchblogs = async (req: Request, res: Response) => {
     res.status(500).json({ message: "something went wrong" });
   }
 };
+export const fetchblog = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.body;
+
+    const blog = await prisma.blog.findFirst({
+    where:{id:id},
+    
+    });
+    res.status(200).json( blog );
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};

@@ -7,6 +7,7 @@ import Posts from "./components/Posts";
 import Createblog from "./components/Createblog";
 import Profile from "./components/Profile";
 import Protected from "./components/Protected";
+import Blogdetails from "./pages/Blogdetails";
 
 function App() {
   return (
@@ -44,6 +45,14 @@ function App() {
             element={
               <Protected>
                 <Profile />
+              </Protected>
+            }
+          />
+          <Route
+            path='blogdetails/:id'
+            element={
+              <Protected>
+                <Blogdetails />
               </Protected>
             }
           />
