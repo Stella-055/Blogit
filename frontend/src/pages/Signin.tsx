@@ -41,8 +41,8 @@ const Signin = () => {
       }
     },
     onSuccess: (data) => {
-      setUserName({ username: data.username });
-      navigate("/dashboard");
+      setUserName({ username: data.username,id:data.id });
+      navigate(`/dashboard/${data.id}/Blogs`);
     },
   });
 

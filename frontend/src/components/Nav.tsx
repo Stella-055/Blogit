@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const { user } = useUser();
+
   return (
     <div className="p-5 flex justify-between items-center border shadow-sm bg-white">
       <div className="flex items-center">
@@ -15,7 +16,7 @@ const Nav = () => {
         <div className="flex items-center gap-2">
           <div className=" flex gap-2">
             <NavLink
-              to="/dashboard/Blogs"
+          to={`/dashboard/${user.id}/Blogs`}
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-300 p-1 rounded"
@@ -25,7 +26,7 @@ const Nav = () => {
               Blogs
             </NavLink>
             <NavLink
-              to="/dashboard/Createblog"
+              to={`/dashboard/${user.id}/Createblog`}
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-300 p-1 rounded "
@@ -35,7 +36,7 @@ const Nav = () => {
               Create Blog
             </NavLink>
             <NavLink
-              to="/dashboard/Profile"
+              to={`/dashboard/${user.id}/Profile`}
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-300 p-1 rounded"
