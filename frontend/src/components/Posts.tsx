@@ -28,7 +28,7 @@ const {user}=useUser()
     queryKey: ["get-user-posts"],
     queryFn: async () => {
       const response = await api.get(
-        "/user/blog",
+        "/user/blogs",
       );
  
       return response.data;
@@ -36,10 +36,10 @@ const {user}=useUser()
     
   })
   if(isLoading){
-    return <img src="/Loading_2.gif" alt="" />
+    return <div className='w-full flex justify-center items-center '><img src="/Loading_2.gif" alt="" /> </div>
   }
   if(error){
-    return <img src="/smtwrong.gif" alt="" />
+    return <div className='w-full flex justify-center items-center'><img src="/smtwrong.gif" alt="" /></div>
   }
   if (!data || data.length === 0) {
     return <img src="/nothing.jpg" alt="No posts found" />;

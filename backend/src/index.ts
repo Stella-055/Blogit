@@ -20,7 +20,7 @@ app.get("/", (_req: Request, res: Response) => {
 });
 app.use("/auth/signup", signuproute);
 app.use("/auth/signin", signinroute);
-app.use("/user/blog", userblogroute);
+app.use("/user/blogs", userblogroute);
 app.use("/user/details", userdetailsroute);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

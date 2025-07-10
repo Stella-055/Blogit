@@ -24,6 +24,14 @@ function App() {
             </Protected>
           }
         >
+           <Route
+            path=""
+            element={
+              <Protected>
+                <Posts />
+              </Protected>
+            }
+          />
           <Route
             path="Blogs"
             element={

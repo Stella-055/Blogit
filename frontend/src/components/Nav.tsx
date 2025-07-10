@@ -9,7 +9,7 @@ const Nav = () => {
     <div className="p-5 flex justify-between items-center border shadow-sm bg-white">
       <div className="flex items-center">
         <img src="/logoipsum-295.png" alt="logo" className="w-9" />
-        <h1 className="text-blue-500 font-bold text-2xl">BlogIt</h1>
+        <NavLink to="/"><h1 className="text-blue-500 font-bold text-2xl">BlogIt</h1></NavLink>
       </div>
       {user ? (
         <div className="flex items-center gap-2">
