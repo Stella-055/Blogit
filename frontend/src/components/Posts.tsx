@@ -17,6 +17,7 @@ const {user}=useUser()
     id: string,
         title: string,
         synopsis: string,
+        blogimage:string,
         content: string,
         authorId: string,
         createdAt: string
@@ -28,7 +29,7 @@ const {user}=useUser()
     queryKey: ["get-user-posts"],
     queryFn: async () => {
       const response = await api.get(
-        "/user/blogs",
+        "/api/blogs",
       );
  
       return response.data;
@@ -41,9 +42,7 @@ const {user}=useUser()
   if(error){
     return <div className='w-full flex justify-center items-center'><img src="/smtwrong.gif" alt="" /></div>
   }
-  if (!data || data.length === 0) {
-    return <img src="/nothing.jpg" alt="No posts found" />;
-  }
+
   return (
     <div className="flex justify-center items-center gap-2 w-full h-full" >
       {data.map((blog:userblog)=>{
@@ -58,7 +57,7 @@ const {user}=useUser()
     
         <img
           className="rounded-t-lg w-96 h-56 object-cover object-top"
-          src="https://images.unsplash.com/photo-1560264418-c4445382edbc?q=80&w=800"
+          src={blog.blogimage}
           alt=""
         />
      

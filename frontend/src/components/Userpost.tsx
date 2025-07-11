@@ -6,13 +6,54 @@ import {
   import IconButton from '@mui/material/IconButton';
   import { FaPen } from "react-icons/fa";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useQuery } from "@tanstack/react-query";
+import api from "@/Api/Axios";
 
 
+import { useNavigate } from 'react-router-dom';
 const Userpost = () => {
+  const navigate=useNavigate()
+  type userblog={
+  
+    id: string,
+        title: string,
+        synopsis: string,
+        content: string,
+        blogimage:string,
+        authorId: string,
+        autorname:string
+        createdAt: string
+        lastUpdated: string,
+        isDeleted:boolean
+    
+  }
+  const {data,isLoading,error} = useQuery({
+    queryKey: ["get-user-posts"],
+    queryFn: async () => {
+      const response = await api.get(
+        "/api/user/blogs",
+      );
+ 
+      return response.data;
+    },
+    
+  })
+  if(isLoading){
+    return <div className='w-full flex justify-center items-center '><img src="/Loading_2.gif" alt="" /> </div>
+  }
+  if(error){
+    return <div className='w-full flex justify-center items-center'><h3>something went wrong while fetching your blogs</h3></div>
+  }
+  if (!data || data.length === 0) {
+    return <img src="/nothing.jpg" alt="No posts found" />;
+  }
   return (
     <div  className="mt-4  flex flex-col items-center mb-3">
        <p className="text-xs bg-blue-200 text-blue-600 font-medium px-3 py-2 rounded-full my-2">Your Blogs</p> 
-      <div style={{width:"30rem"}} className="flex border-solid border-gray-500 p-2 border-2 text-gray-500  justify-around"> <span>1.</span>cooking chapatis <div className="gap-2 flex"> <button><FaPen size={20}/></button> <Popover>
+{data && data.map((blog:userblog,index:number)=>{
+
+  return(
+    <div style={{width:"30rem"}} key={blog.id} className="flex border-solid border-gray-500 p-2 border-2 text-gray-500  justify-around"> <span>{index}</span>{blog.title} <div className="gap-2 flex"> <button><FaPen size={20} onClick={()=> navigate}/></button> <Popover>
   <PopoverTrigger><IconButton aria-label="delete">
   <DeleteIcon />
 </IconButton></PopoverTrigger>
@@ -35,8 +76,12 @@ const Userpost = () => {
         </button>
     </div>
 </div>
-  </PopoverContent>
-</Popover></div></div>
+  </PopoverContent></Popover></div></div>
+  )
+})}
+
+      
+
     </div>
   )
 }

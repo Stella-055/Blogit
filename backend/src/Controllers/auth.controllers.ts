@@ -59,3 +59,17 @@ export const fetchuserdetails = async (req: Request, res: Response) => {
   }
 };
 
+export const primaryinfoupdate=async(req:Request,res:Response)=>{
+  try {
+  const { id } = req.owner;
+  const{username,firstname,lastname,useremail}=req.body
+
+    const newrecord= await prisma.user.update({
+      where:{id:id},
+      data:{username:username,lastname:lastname,firstname:firstname,useremail:useremail}
+    })
+    res.status(200).json({message:"updated details successfully",newrecord})
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong", });
+  }
+}

@@ -33,7 +33,7 @@ const SignUp = () => {
   const { isPending, mutate } = useMutation({
     mutationKey: ["signup"],
     mutationFn: async (user: formdata) => {
-      const result = await api.post("/auth/signup", user);
+      const result = await api.post("api/auth/register", user);
       return result.data;
     },
 

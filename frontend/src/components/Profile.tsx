@@ -8,9 +8,9 @@ import { IoSettings } from "react-icons/io5";
 import { MdLiveHelp } from "react-icons/md";
 import Profiledetails from './Profiledetails';
 import Userpost from './Userpost';
-
+import useUser from '@/stores/userStore';
 const Profile = () => {
-   
+   const {user}=useUser()
   return <>
   <div className=' flex  flex-col justify-center items-center bg-gray-100 ' > 
   <div className='flex items-center gap-4 justify-center flex-wrap w-full'>
@@ -28,7 +28,7 @@ const Profile = () => {
  </div>
  <div className=' mt-6 w-48'> 
  <NavLink
-              to="/dashboard/Profile"
+              to={`/dashboard/${user!.id}/Profile`}
               className={({ isActive }) =>
                 isActive
                   ? "bg-gray-500 text-white rounded flex border-solid border-gray-500  border-2 items-center justify-around p-1  mb-2"

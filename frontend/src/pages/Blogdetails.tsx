@@ -9,7 +9,7 @@ const Blogdetails = () => {
   queryKey: ["get-post-details"],
   queryFn: async () => {
     const response = await api.get(
-      `/user/blogs/${id}`,
+      `/api/blog/${id}`,
     );
 
     return response.data;

@@ -59,7 +59,7 @@ try {
     mutationKey: ["signup"],
     mutationFn: async (blog: createblogdata) => {
 
-      const result = await api.post("/user/blogs", blog);
+      const result = await api.post("/api/blogs", blog);
       return result.data;
     },
 

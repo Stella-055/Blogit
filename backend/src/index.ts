@@ -2,7 +2,7 @@ import express, { Request, Response, Express } from "express";
 import signuproute from "./Routes/signup";
 import signinroute from "./Routes/signin";
 import userdetailsroute from "./Routes/userdetails";
-import userblogroute from "./Routes/blog";
+import blogroute from "./Routes/blog";
 import cors from "cors";
 import cookie from "cookie-parser";
 const app: Express = express();
@@ -18,10 +18,10 @@ app.use(
 app.get("/", (_req: Request, res: Response) => {
   res.send("welcome to blogIt");
 });
-app.use("/auth/signup", signuproute);
-app.use("/auth/signin", signinroute);
-app.use("/user/blogs", userblogroute);
-app.use("/user/details", userdetailsroute);
+app.use("/api/auth/register", signuproute);
+app.use("/api/auth/login", signinroute);
+app.use("/api/blogs", blogroute);
+app.use("/api/user", userdetailsroute);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`server is up and running on port ${port}`);
