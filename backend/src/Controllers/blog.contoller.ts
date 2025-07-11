@@ -4,9 +4,9 @@ const prisma = new PrismaClient();
 export const createblog = async (req: Request, res: Response) => {
   try {
     const { id } = req.owner;
-    const { title, synopsis, content } = req.body;
+    const { title, synopsis, content,blogimage } = req.body;
     const newblog = await prisma.blog.create({
-      data: { title, synopsis, content, authorId: id },
+      data: { title, synopsis, content, authorId: id, blogimage},
     });
     res.status(200).json({ message: "user created successfully" });
   } catch (error) {

@@ -72,9 +72,9 @@ const {user}=useUser()
         {blog.synopsis}
         </p>
 
-        <div className="flex items-center mb-2 gap-2"> <Avatar alt={user?.username}    src="/static/images/avatar/1.jpg" /> <h3 >{user?.username}</h3><h3> {blog.createdAt} </h3></div>
+        <div className="flex items-center mb-2 gap-2"> <Avatar alt={user!.username}    src="/static/images/avatar/1.jpg" /> <h3 >{user?.username}</h3><h3> {blog.createdAt} </h3></div>
         
-        <Button variant='contained' href={`/dashboard/blogdetails/${blog.id}`}
+        <Button variant='contained' href={`/dashboard/${user!.id}/blogdetails/${blog.id}`}
         endIcon={<ArrowRight />}>Read More</Button>
         
         
