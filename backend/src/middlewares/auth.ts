@@ -136,34 +136,43 @@ export const checkinputupdates = (
       res.status(400).json({ message: "please provide an email" });
       return;
     }
-    
+
     next();
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
 };
 
-export const checkpasswordinputs=(req: Request, res: Response,next:NextFunction)=>{
-try {
-  const {prevpas,password}=req.body
-
-if(!prevpas||!password){
-  res.status(400).json({message:"please provide both new and old password"})
-  return
-}
-next()
-} catch (error) {
-  res.status(500).json({ message: "something went wrong" });
-}
-
-}
-export const checkpasswordvalidity=async(req:Request,res:Response,next:NextFunction)=>{
+export const checkpasswordinputs = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-    const{id}=req.owner
-    const {prevpas}=req.body
-    const oldpassword= await prisma.user.findFirst({
-      where:{id}
-    })
+    const { prevpas, password } = req.body;
+
+    if (!prevpas || !password) {
+      res
+        .status(400)
+        .json({ message: "please provide both new and old password" });
+      return;
+    }
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+export const checkpasswordvalidity = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.owner;
+    const { prevpas } = req.body;
+    const oldpassword = await prisma.user.findFirst({
+      where: { id },
+    });
     const unhashedpswd = await bcrypt.compare(prevpas, oldpassword!.password);
 
     if (!unhashedpswd) {
@@ -171,10 +180,7 @@ export const checkpasswordvalidity=async(req:Request,res:Response,next:NextFunct
       return;
     }
     next();
-
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
- 
-
-}
+};

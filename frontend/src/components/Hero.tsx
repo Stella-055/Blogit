@@ -1,7 +1,7 @@
 import useUser from "../stores/userStore";
 const Hero = () => {
   const { user } = useUser();
- 
+
   return (
     <div>
       <section className="bg-white lg:grid lg:h-screen lg:place-content-center">
@@ -21,7 +21,7 @@ const Hero = () => {
             <div className="mt-4 flex justify-center gap-4 sm:mt-6">
               <a
                 className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
-                href={user ? `/dashboard/${user?.id}/Blogs `: "/signin"}
+                href={user ? `/dashboard/${user?.id}/Blogs ` : "/signin"}
               >
                 Get Started
               </a>

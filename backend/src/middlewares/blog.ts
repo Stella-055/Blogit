@@ -35,7 +35,7 @@ export const checkbloginputs = (
   next: NextFunction,
 ) => {
   try {
-    const { title, synopsis, content,blogimage } = req.body;
+    const { title, synopsis, content, blogimage } = req.body;
     if (!title) {
       res.status(400).json({ message: "please provide a title" });
       return;
@@ -51,9 +51,7 @@ export const checkbloginputs = (
       return;
     }
     if (!blogimage) {
-      res
-        .status(400)
-        .json({ message: "please provide an image for the blog" });
+      res.status(400).json({ message: "please provide an image for the blog" });
       return;
     }
 

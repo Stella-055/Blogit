@@ -12,7 +12,7 @@ import Settings from "./components/Settings";
 
 function App() {
   return (
-    <div >
+    <div>
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/Signin" element={<Signin />} />
@@ -22,11 +22,9 @@ function App() {
           element={
             <Protected>
               <Dashboard />
-              
             </Protected>
           }
         >
-         
           <Route
             path="Blogs"
             element={
@@ -55,12 +53,12 @@ function App() {
             path="settings"
             element={
               <Protected>
-                <Settings/>
+                <Settings />
               </Protected>
             }
           />
           <Route
-            path='blogdetails/:id'
+            path="blogdetails/:id"
             element={
               <Protected>
                 <Blogdetails />
