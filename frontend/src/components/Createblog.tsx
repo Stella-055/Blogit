@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
 import  Alert  from '@mui/material/Alert';
 import { useMutation } from "@tanstack/react-query";
 import api from "@/Api/Axios";
@@ -22,7 +22,7 @@ const [blogdata, setBlogdata]=useState({
 })
 const [loading , setLoading]=useState(false)
 const [error ,setError]=useState<null|string>()
-const[info,setInfo]=useState<null|string>()
+
 const [image,setImage]=useState<File | null>()
   async function imageupload(){
     if (!image) {
@@ -72,7 +72,7 @@ try {
       }
     },
     onSuccess: () => {
-     setInfo("blog created successfully")
+      toast("blog created successfully")
      setLoading(false)
      setBlogdata({title:"",
       synopsis:"",
@@ -106,7 +106,7 @@ try {
 
         <div className="w-full ">
            {error && <Alert severity="error">{error}</Alert> }
-           {info && <Alert severity="success">{info}</Alert> }
+           <ToastContainer position="top-center" />
           <div className="flex items-center w-full bg-transparent border border-gray-300 h-12 rounded-lg overflow-hidden pl-6 gap-2 mt-2">
             <input
               type="text"

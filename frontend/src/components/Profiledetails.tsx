@@ -3,6 +3,7 @@ import { useQuery,useMutation } from "@tanstack/react-query";
 import api from "@/Api/Axios";
 import axios from "axios";
 import { useState ,useEffect} from "react";
+import { ToastContainer, toast } from 'react-toastify';
 const Profiledetails = () => {
     type UserProfile = {
         username: string;
@@ -13,7 +14,7 @@ const Profiledetails = () => {
       };
     const [userprofile, setUserprofile]=useState<UserProfile>({username:"-",useremail:"-",firstname:"-",lastname:"-"})
     const[error, setError]=useState<null|string>()
-    const[info, setinfo]=useState<null|string>()
+  
     const {data} = useQuery({
         queryKey: ["get-user-details"],
         queryFn: async () => {
@@ -46,7 +47,7 @@ const { isPending, mutate } = useMutation({
       }
     },
     onSuccess: () => {
-     setinfo("updated your profile successfully")
+     toast("updated your profile successfully")
     },
   });
 
@@ -77,8 +78,9 @@ const { isPending, mutate } = useMutation({
    
     
     <div className="max-w-96 w-full px-4">
-        {info && <Alert severity="success">{info}</Alert>}
-        {error && <Alert severity="warning">{error}</Alert>}
+    
+        {error && <Alert severity="error">{error}</Alert>}
+        <ToastContainer position="top-center" />
     <label htmlFor="username" className="font-medium mt-4  text-gray-500">User Name</label>
         <div className="flex items-center mt-2 mb-4 h-10 pl-3 border border-gray-400 rounded-full focus-within:ring-2 focus-within:ring-gray-400 transition-all overflow-hidden">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

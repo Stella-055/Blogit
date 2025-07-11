@@ -73,3 +73,19 @@ export const primaryinfoupdate=async(req:Request,res:Response)=>{
     res.status(500).json({ message: "something went terribly wrong", });
   }
 }
+export const updateuserpassword = async (req: Request, res: Response) => {
+  try {
+    const {  password } = req.body;
+    const{id}=req.owner
+    const hashedpswd = await bcrypt.hash(password, 10);
+
+    const newuser = await prisma.user.update({
+      where:{id},
+      data: {  password: hashedpswd },
+    });
+
+    res.status(200).json({ message: "password updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};

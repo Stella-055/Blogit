@@ -39,7 +39,7 @@ const SignUp = () => {
 
     onError: (error) => {
       if (axios.isAxiosError(error)) {
-        console.log(error);
+      
         setFormError(error.response?.data.message);
         return;
       } else {
