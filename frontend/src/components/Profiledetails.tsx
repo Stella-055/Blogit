@@ -29,11 +29,13 @@ const Profiledetails = () => {
 const { isPending, mutate } = useMutation({
     mutationKey: ["update"],
     mutationFn: async (details: UserProfile) => {
+      console.log(details)
       const result = await api.patch("/api/user", details);
       return result.data;
     },
 
     onError: (error) => {
+      console.log(error)
       if (axios.isAxiosError(error)) {
         
         setError(error.response?.data.message);

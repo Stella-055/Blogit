@@ -112,3 +112,34 @@ export const signinemailpswdcheck = async (
     res.status(500).json({ message: "something went wrong" });
   }
 };
+
+export const checkinputupdates = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { firstname, lastname, username, useremail } = req.body;
+    if (!firstname) {
+      res.status(400).json({ message: "please provide first name" });
+      return;
+    }
+    if (!lastname) {
+      res.status(400).json({ message: "please provide last name" });
+      return;
+    }
+    if (!username) {
+      res.status(400).json({ message: "please provide user name" });
+      return;
+    }
+    if (!useremail) {
+      res.status(400).json({ message: "please provide an email" });
+      return;
+    }
+    
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+

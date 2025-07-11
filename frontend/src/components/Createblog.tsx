@@ -29,17 +29,16 @@ const [image,setImage]=useState<File | null>()
       setError("No image selected")
       return;
     }
-  
+    const uploadUrl = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL;
 const formData= new FormData()
 formData.append("file",image)
-formData.append("upload_preset","blogit")
+formData.append("upload_preset",import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
 
 
 try {
   setLoading(true)
-  const imageurl=await axios.post(process.env.CLOUDINARY_API!,formData)
-  setBlogdata({...blogdata,blogimage:imageurl.data.secure_url})
-  setLoading(false)
+  const response=await axios.post(uploadUrl,formData)
+  return response.data.secure_url;
 } catch (error) {
   setLoading(false)
   if (axios.isAxiosError(error)) {
@@ -74,12 +73,26 @@ try {
     },
     onSuccess: () => {
      setInfo("blog created successfully")
+     setLoading(false)
+     setBlogdata({title:"",
+      synopsis:"",
+      blogimage:"",
+      content:""})
+
     },
   });
 
   async function createblog(){
-    await imageupload()
-    mutate(blogdata)
+    setError("")
+    const uploadedUrl = await imageupload();
+  if (!uploadedUrl) return setError("error uploading image");
+
+  const blogToSubmit = {
+    ...blogdata,
+    blogimage: uploadedUrl,
+  };
+    
+    mutate(blogToSubmit)
 
   }
   

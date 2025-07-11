@@ -20,6 +20,7 @@ const {user}=useUser()
         blogimage:string,
         content: string,
         authorId: string,
+        authorname:string,
         createdAt: string
         lastUpdated: string,
         isDeleted:boolean
@@ -44,7 +45,7 @@ const {user}=useUser()
   }
 
   return (
-    <div className="flex justify-center items-center gap-2 w-full h-full" >
+    <div className="flex justify-center items-center gap-2 w-full h-full flex-wrap" >
       {data.map((blog:userblog)=>{
       return  (
     <div
@@ -71,7 +72,7 @@ const {user}=useUser()
         {blog.synopsis}
         </p>
 
-        <div className="flex items-center mb-2 gap-2"> <Avatar alt={user!.username}    src="/static/images/avatar/1.jpg" /> <h3 >{user?.username}</h3><h3> {blog.createdAt} </h3></div>
+        <div className="flex items-center mb-2 gap-2"> <Avatar alt={blog.authorname}    src="/static/images/avatar/1.jpg" /> <h3 >{blog.authorname}</h3><h3> {blog.createdAt} </h3></div>
         
         <Button variant='contained' href={`/dashboard/${user!.id}/blogdetails/${blog.id}`}
         endIcon={<ArrowRight />}>Read More</Button>
