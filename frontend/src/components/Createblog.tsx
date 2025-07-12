@@ -20,7 +20,7 @@ const Createblog = () => {
     content: "",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | string>();
+  const [errors, setError] = useState<null | string>();
 
   const [image, setImage] = useState<File | null>();
   async function imageupload() {
@@ -43,7 +43,7 @@ const Createblog = () => {
     } catch (error) {
       setLoading(false);
       if (axios.isAxiosError(error)) {
-        console.log(error);
+        
         setError(error.response?.data.message);
         return;
       } else {
@@ -100,7 +100,7 @@ const Createblog = () => {
         </p>
 
         <div className="w-full ">
-          {error && <Alert severity="error">{error}</Alert>}
+          {errors && <Alert severity="error">{errors}</Alert>}
           <ToastContainer position="top-center" />
           <div className="flex items-center w-full bg-transparent border border-gray-300 h-12 rounded-lg overflow-hidden pl-6 gap-2 mt-2">
             <input

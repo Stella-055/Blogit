@@ -4,13 +4,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import IconButton from "@mui/material/IconButton";
-import { FaPen } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/Api/Axios";
+import useUser from "@/stores/userStore";
 
 import { useNavigate } from "react-router-dom";
 const Userpost = () => {
+  const{user}=useUser()
   const navigate = useNavigate();
   type userblog = {
     id: string;
@@ -54,10 +56,32 @@ const Userpost = () => {
       <p className="text-xs bg-blue-200 text-blue-600 font-medium px-3 py-2 rounded-full my-2">
         Your Blogs
       </p>
+      <div className="flex flex-wrap gap-3 w-full">
       {data &&
-        data.map((blog: userblog, index: number) => {
+        data.map((blog: userblog) => {
           return (
-            <div
+
+<div key={blog.id} className="p-4 bg-white rounded-lg shadow-sm max-w-80">
+            <img className="rounded-md max-h-40 w-full object-cover" src={blog.blogimage} alt="officeImage" />
+            <p className="text-gray-900 text-xl font-semibold ml-2 mt-2">{blog.title}</p>
+            <p className="text-gray-500 text-sm my-3 ml-2"> {blog.synopsis}</p>
+            <div className="flex justify-start items-center"><IconButton aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
+                    <FaEdit color="grey" size={25} onClick={()=>{navigate(`/dashboard/${user!.id}/userblogdetails/${blog.id}`)}}/></div>
+        </div>
+
+
+          );
+        }) } </div>
+    </div>
+  );
+};
+
+export default Userpost;
+
+
+           {/* <div
               style={{ width: "30rem" }}
               key={blog.id}
               className="flex border-solid border-gray-500 p-2 border-2 text-gray-500  justify-around"
@@ -122,11 +146,4 @@ const Userpost = () => {
                   </PopoverContent>
                 </Popover>
               </div>
-            </div>
-          );
-        })}
-    </div>
-  );
-};
-
-export default Userpost;
+            </div> */}

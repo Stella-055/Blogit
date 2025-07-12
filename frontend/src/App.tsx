@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import Protected from "./components/Protected";
 import Blogdetails from "./pages/Blogdetails";
 import Settings from "./components/Settings";
+import Updateblog from "./components/Updateblog";
 
 function App() {
   return (
@@ -54,6 +55,14 @@ function App() {
             element={
               <Protected>
                 <Settings />
+              </Protected>
+            }
+          />
+           <Route
+            path="userblogdetails/:id"
+            element={
+              <Protected>
+                <Updateblog />
               </Protected>
             }
           />
