@@ -1,17 +1,19 @@
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+
 import IconButton from "@mui/material/IconButton";
 import { FaEdit } from "react-icons/fa";
-import DeleteIcon from "@mui/icons-material/Delete";
+
+import Box from '@mui/material/Box';
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import api from "@/Api/Axios";
 import useUser from "@/stores/userStore";
-
+import Modal from '@mui/material/Modal';
+import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import Typography from '@mui/material/Typography';
+import { Button } from "@mui/material";
 const Userpost = () => {
+  const [open, setOpen] = useState(false);
   const{user}=useUser()
   const navigate = useNavigate();
   type userblog = {
@@ -66,84 +68,47 @@ const Userpost = () => {
             <p className="text-gray-900 text-xl font-semibold ml-2 mt-2">{blog.title}</p>
             <p className="text-gray-500 text-sm my-3 ml-2"> {blog.synopsis}</p>
             <div className="flex justify-start items-center"><IconButton aria-label="delete">
-                      <DeleteIcon />
+            <MdDeleteForever color="red" size={30} onClick={()=>setOpen(true)}/>
                     </IconButton>
-                    <FaEdit color="grey" size={25} onClick={()=>{navigate(`/dashboard/${user!.id}/userblogdetails/${blog.id}`)}}/></div>
+                    <FaEdit className="text-blue-500"  size={25} onClick={()=>{navigate(`/dashboard/${user!.id}/userblogdetails/${blog.id}`)}}/></div>
         </div>
+ 
 
-
-          );
+          )
+          
         }) } </div>
+
+
+      <Modal
+          open={open}
+          onClose={()=> setOpen(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={{ position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4}}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Are you sure you want to delete this blog?
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+             This action is parmanent and can not be undone
+            </Typography>
+            <Box sx={{display:"flex", justifyContent:"center", gap:"1rem"}}>
+              <Button variant="contained" color="error">Yes</Button>
+              <Button variant="contained">NO</Button>
+            </Box>
+          </Box>
+        </Modal>
     </div>
   );
 };
 
 export default Userpost;
 
-
-           {/* <div
-              style={{ width: "30rem" }}
-              key={blog.id}
-              className="flex border-solid border-gray-500 p-2 border-2 text-gray-500  justify-around"
-            >
-              {" "}
-              <span>{index}</span>
-              {blog.title}{" "}
-              <div className="gap-2 flex">
-                {" "}
-                <button>
-                  <FaPen size={20} onClick={() => navigate} />
-                </button>{" "}
-                <Popover>
-                  <PopoverTrigger>
-                    <IconButton aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    {" "}
-                    <div className="flex flex-col items-center bg-white shadow-md rounded-xl py-6 px-5 md:w-[460px] w-[370px] border border-gray-300">
-                      <div className="flex items-center justify-center p-4 bg-red-100 rounded-full">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M2.875 5.75h1.917m0 0h15.333m-15.333 0v13.417a1.917 1.917 0 0 0 1.916 1.916h9.584a1.917 1.917 0 0 0 1.916-1.916V5.75m-10.541 0V3.833a1.917 1.917 0 0 1 1.916-1.916h3.834a1.917 1.917 0 0 1 1.916 1.916V5.75m-5.75 4.792v5.75m3.834-5.75v5.75"
-                            stroke="#DC2626"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </div>
-                      <h2 className="text-gray-900 font-semibold mt-4 text-xl">
-                        Are you sure?
-                      </h2>
-                      <p className="text-sm text-gray-600 mt-2 text-center">
-                        Do you really want to continue? This action
-                        <br />
-                        cannot be undone.
-                      </p>
-                      <div className="flex items-center justify-center gap-4 mt-5 w-full">
-                        <button
-                          type="button"
-                          className="w-full md:w-36 h-10 rounded-md border border-gray-300 bg-white text-gray-600 font-medium text-sm hover:bg-gray-100 active:scale-95 transition"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="button"
-                          className="w-full md:w-36 h-10 rounded-md text-white bg-red-600 font-medium text-sm hover:bg-red-700 active:scale-95 transition"
-                        >
-                          Confirm
-                        </button>
-                      </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </div>
-            </div> */}
