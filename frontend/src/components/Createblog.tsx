@@ -39,6 +39,7 @@ const Createblog = () => {
     try {
       setLoading(true);
       const response = await axios.post(uploadUrl, formData);
+      setLoading(false)
       return response.data.secure_url;
     } catch (error) {
       setLoading(false);

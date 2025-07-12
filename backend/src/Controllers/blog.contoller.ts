@@ -5,7 +5,7 @@ export const createblog = async (req: Request, res: Response) => {
   try {
     const { id, username } = req.owner;
     const { title, synopsis, content, blogimage } = req.body;
-    const newblog = await prisma.blog.create({
+     await prisma.blog.create({
       data: {
         title,
         synopsis,
@@ -44,15 +44,32 @@ export const fetchuserblogs = async (req: Request, res: Response) => {
 };
 export const fetchblog = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-
+    const { blogId } = req.params;
+  
     const blog = await prisma.blog.findFirst({
-      where: { id: id },
+      where: { id: blogId },
     });
 
     blog
       ? res.status(200).json(blog)
       : res.status(400).json({ message: "Blog probably does not exists" });
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+};
+
+export const updateblog = async (req: Request, res: Response) => {
+  try {
+    const { blogId } = req.params;
+    const { title, synopsis, content, blogimage } = req.body;
+     await prisma.blog.update({
+      where: { id: blogId },
+      data:{title,synopsis,content,blogimage}
+    });
+
+   
+       res.status(200).json({message:"updated blog successfully"})
+     
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }

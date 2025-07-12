@@ -56,7 +56,7 @@ const Userpost = () => {
       <p className="text-xs bg-blue-200 text-blue-600 font-medium px-3 py-2 rounded-full my-2">
         Your Blogs
       </p>
-      <div className="flex flex-wrap gap-3 w-full">
+      <div className="flex flex-wrap gap-3 w-full justify-center">
       {data &&
         data.map((blog: userblog) => {
           return (
