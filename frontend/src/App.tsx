@@ -58,7 +58,7 @@ function App() {
               </Protected>
             }
           />
-           <Route
+          <Route
             path="userblogdetails/:id"
             element={
               <Protected>

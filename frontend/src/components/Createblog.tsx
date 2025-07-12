@@ -39,12 +39,11 @@ const Createblog = () => {
     try {
       setLoading(true);
       const response = await axios.post(uploadUrl, formData);
-      setLoading(false)
+      setLoading(false);
       return response.data.secure_url;
     } catch (error) {
       setLoading(false);
       if (axios.isAxiosError(error)) {
-        
         setError(error.response?.data.message);
         return;
       } else {
@@ -142,13 +141,14 @@ const Createblog = () => {
               className="bg-transparent flex items-center justify-center text-gray-700 placeholder-gray-500/80 outline-none text-sm w-full h-full"
             />
           </div>
-
+          
           <textarea
             rows={10}
             id="msg"
-            className="w-full border mt-2 p-2  resize-none border-gray-300 outline-none rounded-lg text-sm bg-transparent"
+            className="w-full border mt-2 p-2  resize border-gray-300 outline-none rounded-lg text-sm bg-transparent"
             placeholder="Your Blog Content"
             value={blogdata.content}
+            
             onChange={(e) => {
               setBlogdata({ ...blogdata, content: e.target.value });
             }}

@@ -52,7 +52,10 @@ const Settings = () => {
     mutate(passworddata);
   }
   return (
-    <div style={{height:"87vh"}} className="flex flex-wrap justify-center items-center text-center gap-4 bg-gray-100 ">
+    <div
+      style={{ height: "87vh" }}
+      className="flex flex-wrap justify-center items-center text-center gap-4 bg-gray-100 "
+    >
       <Profilenav />
       <div>
         <h3>Want to change your password?</h3>
@@ -74,7 +77,7 @@ const Settings = () => {
           <input
             type={visibility1 ? "text" : "password"}
             placeholder=" Previous Password"
-            value={passworddata.prevpas} 
+            value={passworddata.prevpas}
             className="bg-transparent text-gray-500 placeholder-gray-500/80 outline-none text-sm w-full h-full"
             onChange={(e) => {
               setPassworddata({ ...passworddata, prevpas: e.target.value });

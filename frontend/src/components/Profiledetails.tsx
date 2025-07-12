@@ -37,7 +37,6 @@ const Profiledetails = () => {
     },
 
     onError: (error) => {
-     
       if (axios.isAxiosError(error)) {
         setError(error.response?.data.message);
         return;

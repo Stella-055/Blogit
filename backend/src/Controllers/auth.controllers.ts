@@ -35,15 +35,12 @@ export const signinauth = async (req: Request, res: Response) => {
       process.env.JWT_SECRET!,
     );
 
-    res
-      .cookie("signintoken", token)
-      .status(200)
-      .json({
-        id: id,
-        username: username,
-        lastname: lastname,
-        firstname: firstname,
-      });
+    res.cookie("signintoken", token).status(200).json({
+      id: id,
+      username: username,
+      lastname: lastname,
+      firstname: firstname,
+    });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }

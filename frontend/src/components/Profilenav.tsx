@@ -8,7 +8,7 @@ import { IoSettings } from "react-icons/io5";
 import { MdLiveHelp } from "react-icons/md";
 import useUser from "@/stores/userStore";
 const Profilenav = () => {
-  const { user,logoutuser } = useUser();
+  const { user, logoutuser } = useUser();
   return (
     <>
       <div className="flex flex-col  justify-center items-center h-full gap-x-1.5 ">
