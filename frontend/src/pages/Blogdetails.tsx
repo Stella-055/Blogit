@@ -12,6 +12,8 @@ import { CiBookmark } from "react-icons/ci";
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { FiUpload } from "react-icons/fi";
 import { IoIosMore } from "react-icons/io";
+import ReactMarkdown from "react-markdown"
+
 const Blogdetails = () => {
   const { id } = useParams();
   const [value, setValue] = useState<number | null>(2);
@@ -43,12 +45,12 @@ const Blogdetails = () => {
             </h1>
           <div className="flex gap-4 justify-start items-center ">
           <Avatar
-  alt={data.username}
+  alt={data.authorname}
   src="/static/g"
   sx={{ width: 35, height: 35 , }}
  
 />
-<h3>{data.username}</h3>
+<h3>{data.authorname}</h3>
 <Button variant="outlined"  sx={{borderRadius:"2rem" ,height:'1.8rem ',color:"gray",textTransform:"capitalize", borderColor:"black"}} endIcon={<IoIosArrowDown />}>
  following
 </Button>
@@ -61,7 +63,7 @@ const Blogdetails = () => {
 <Rating
         name="simple-controlled"
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(_, newValue) => {
           setValue(newValue);
         }}
       />
@@ -76,8 +78,9 @@ const Blogdetails = () => {
 
      </div>
      <hr className="w-2/4 bg-gray-500 h-0.3 mt-4 mb-3"/>
-     <img src={data.blogimage} alt="" className=" h-96" />
-     
+     <div className=" h-96 w-1/4 overflow-hidden" > <img src={data.blogimage} alt="" className=" h-full w-full " /></div>
+    
+   <ReactMarkdown>{data.content}</ReactMarkdown>
         </div>
       )}{" "}
     </>

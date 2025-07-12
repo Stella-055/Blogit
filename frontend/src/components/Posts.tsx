@@ -31,6 +31,13 @@ const Posts = () => {
       return response.data;
     },
   });
+  const filteredBlogs =
+    searchvalue.trim() !== ""
+      ? data?.filter((blog: userblog) =>
+          blog.title.toLowerCase().includes(searchvalue.toLowerCase()) ||
+          blog.synopsis.toLowerCase().includes(searchvalue.toLowerCase())
+        )
+      : data?.slice(0, 3);
   if (isLoading) {
     return (
       <div className="w-full flex justify-center items-center">
@@ -40,7 +47,7 @@ const Posts = () => {
   }
   if (error) {
     return (
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center ">
         <img src="/smtwrong.gif" alt="something went wrong..." />
       </div>
     );
@@ -55,12 +62,12 @@ const Posts = () => {
   }
 
   return (
-    <div className="flex flex-col items-center  pt-10 bg-gray-50">
+    <div  className="flex flex-col items-center  pt-10 bg-gray-50 h-screen">
       <h1 className="text-gray-900 text-center font-semibold text-3xl sm:text-4xl md:text-5xl max-w-2xl leading-tight">
         Find the best blogs
         <span className="text-blue-500">with Blogit</span>
       </h1>
-      <div className="flex items-center border pl-4 gap-2 bg-white border-gray-500/30 h-[46px] rounded-full overflow-hidden max-w-md w-full m-10">
+      <div className="flex items-center border pl-4 gap-2 bg-white border-gray-500/30 h-16 rounded-full overflow-hidden max-w-md w-full m-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -77,18 +84,14 @@ const Posts = () => {
           value={searchvalue}
           onChange={(e) => setSearchvalue(e.target.value)}
         />
-        <button
-          type="submit"
-          className="bg-blue-500 w-32 h-9 rounded-full text-sm text-white mr-[5px]"
-          onClick={() => {}}
-        >
-          Search
-        </button>
+       
       </div>
 
       <div className="flex justify-center items-center gap-2 w-full h-full flex-wrap">
-        {data.slice(0, 3).map((blog: userblog) => {
-          return (
+       
+          {filteredBlogs && filteredBlogs.length > 0 ? (
+            filteredBlogs.map((blog: userblog) => (
+          
             <div
               key={blog.id}
               className="relative w-80 bg-white border border-gray-200 rounded-lg shadow-sm"
@@ -133,8 +136,10 @@ const Posts = () => {
                 </Button>
               </div>
             </div>
-          );
-        })}
+          )))
+        : (
+          <Alert severity="info">No blogs found for your search</Alert>
+        )}
       </div>
     </div>
   );
