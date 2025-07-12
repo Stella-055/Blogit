@@ -3,8 +3,9 @@ import useUser from "@/stores/userStore";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/Api/Axios";
 
-import { Button } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 const Posts = () => {
   const { user } = useUser();
 
@@ -20,6 +21,7 @@ const Posts = () => {
     lastUpdated: string;
     isDeleted: boolean;
   };
+  const[searchvalue,setSearchvalue]=useState("")
   const { data, isLoading, error } = useQuery({
     queryKey: ["get-user-posts"],
     queryFn: async () => {
@@ -30,22 +32,23 @@ const Posts = () => {
   });
   if (isLoading) {
     return (
-      <div className="w-full flex justify-center items-center ">
-        <img src="/Loading_2.gif" alt="" />{" "}
+      <div className="w-full flex justify-center items-center">
+        <img src="/Loading_2.gif" alt="Loading..." />
       </div>
     );
   }
   if (error) {
     return (
       <div className="w-full flex justify-center items-center">
-        <img src="/smtwrong.gif" alt="" />
+        <img src="/smtwrong.gif" alt="something went wrong..." />
       </div>
     );
   }
   if (data.length<=0) {
     return (
-      <div className="w-full flex justify-center items-center">
-        <img src="/nothing.jpg" alt="" />
+      <div className="w-full flex justify-center items-center flex-col mt-2">
+        <Alert severity="info"> No Blogs Yet</Alert>
+         <img src="/nothing.jpg" alt="" />
       </div>
     );
   }
@@ -63,9 +66,13 @@ const Posts = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="#6B7280">
                         <path d="M13 3C7.489 3 3 7.489 3 13s4.489 10 10 10a9.95 9.95 0 0 0 6.322-2.264l5.971 5.971a1 1 0 1 0 1.414-1.414l-5.97-5.97A9.95 9.95 0 0 0 23 13c0-5.511-4.489-10-10-10m0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8-8-3.57-8-8 3.57-8 8-8"/>
                     </svg>
-                    <input type="text" className="w-full h-full outline-none text-sm text-gray-500"placeholder="search for a blog " />
-                    <button type="submit" className="bg-blue-500 w-32 h-9 rounded-full text-sm text-white mr-[5px]">Search</button>
+                    <input type="text" className="w-full h-full outline-none text-sm text-gray-500"placeholder="search for a blog " value={searchvalue} onChange={(e) => setSearchvalue(e.target.value)} />
+                    <button type="submit" className="bg-blue-500 w-32 h-9 rounded-full text-sm text-white mr-[5px]" onClick={
+                      ()=>{}
+                    }>Search</button>
                 </div>
+
+                
     <div className="flex justify-center items-center gap-2 w-full h-full flex-wrap">
       {data.slice(0,3).map((blog: userblog) => {
         return (

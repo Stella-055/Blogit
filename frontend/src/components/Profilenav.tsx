@@ -8,7 +8,7 @@ import { IoSettings } from "react-icons/io5";
 import { MdLiveHelp } from "react-icons/md";
 import useUser from "@/stores/userStore";
 const Profilenav = () => {
-  const { user } = useUser();
+  const { user,logoutuser } = useUser();
   return (
     <>
       <div className="flex flex-col  justify-center items-center h-full gap-x-1.5 ">
@@ -47,7 +47,7 @@ const Profilenav = () => {
             Settings
           </NavLink>
           <NavLink
-            to="/asd"
+            to="/"
             className={({ isActive }) =>
               isActive
                 ? "bg-gray-500 text-white rounded flex border-solid border-gray-500  border-2 items-center justify-around p-1  mb-2"
@@ -58,7 +58,7 @@ const Profilenav = () => {
             Get Help
           </NavLink>
           <NavLink
-            to="/das"
+            to="/"
             className={({ isActive }) =>
               isActive
                 ? "bg-gray-500 text-white rounded flex border-solid border-gray-500  border-2 items-center justify-around p-1  mb-2"
@@ -75,6 +75,7 @@ const Profilenav = () => {
             fullWidth
             tabIndex={-1}
             startIcon={<RiLogoutCircleLine />}
+            onClick={logoutuser}
           >
             Signout
           </Button>

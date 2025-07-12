@@ -23,7 +23,9 @@ export const createblog = async (req: Request, res: Response) => {
 
 export const fetchblogs = async (req: Request, res: Response) => {
   try {
-    const userblogs = await prisma.blog.findMany();
+    const userblogs = await prisma.blog.findMany({
+      where:{isDeleted:false}
+    });
 
     res.status(200).json(userblogs);
   } catch (error) {
@@ -35,9 +37,12 @@ export const fetchuserblogs = async (req: Request, res: Response) => {
     const { id } = req.owner;
 
     const userblogs = await prisma.blog.findMany({
-      where: { authorId: id },
+     
+      where:{AND:[{ authorId: id},{isDeleted:false}]} ,
     });
-    res.status(200).json(userblogs);
+    userblogs?
+    res.status(200).json(userblogs):
+    res.status(400).json({message:"No blogs found"})
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
@@ -62,15 +67,31 @@ export const updateblog = async (req: Request, res: Response) => {
   try {
     const { blogId } = req.params;
     const { title, synopsis, content, blogimage } = req.body;
-     await prisma.blog.update({
+    const updatedblog= await prisma.blog.update({
       where: { id: blogId },
       data:{title,synopsis,content,blogimage}
     });
-
+updatedblog?res.status(200).json({message:"updated blog successfully"}):
+res.status(400).json({message:"Blog does not exist"})
    
-       res.status(200).json({message:"updated blog successfully"})
+       
      
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
 };
+
+export const deleteblog= async (req: Request, res: Response) => {
+  try {
+    const { blogId } = req.params;
+    const deletedblog = await prisma.blog.update({
+      where:{id:blogId},
+      data:{isDeleted:true}
+    })
+    deletedblog?res.status(200).json({message:"deleted blog successfully"}):
+   res.status(400).json({message:"Blog does not exist"})
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+
+}

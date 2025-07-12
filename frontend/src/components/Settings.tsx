@@ -52,13 +52,13 @@ const Settings = () => {
     mutate(passworddata);
   }
   return (
-    <div className="flex flex-wrap justify-center items-center gap-4">
+    <div style={{height:"87vh"}} className="flex flex-wrap justify-center items-center text-center gap-4 bg-gray-100 ">
       <Profilenav />
       <div>
         <h3>Want to change your password?</h3>
         {error && <Alert severity="error">{error}</Alert>}
         <ToastContainer position="top-center" />
-        <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
+        <div className="flex items-center mt-6 w-full bg-transparent border border-gray-500 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
           <svg
             width="13"
             height="17"
@@ -74,8 +74,8 @@ const Settings = () => {
           <input
             type={visibility1 ? "text" : "password"}
             placeholder=" Previous Password"
-            value={passworddata.prevpas}
-            className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
+            value={passworddata.prevpas} 
+            className="bg-transparent text-gray-500 placeholder-gray-500/80 outline-none text-sm w-full h-full"
             onChange={(e) => {
               setPassworddata({ ...passworddata, prevpas: e.target.value });
             }}
@@ -89,7 +89,7 @@ const Settings = () => {
             />
           )}
         </div>
-        <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
+        <div className="flex items-center mt-6 w-full bg-transparent border border-gray-500 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
           <svg
             width="13"
             height="17"
@@ -121,7 +121,7 @@ const Settings = () => {
             />
           )}
         </div>
-        <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
+        <div className="flex items-center mt-6 w-full bg-transparent border border-gray-500 h-12 rounded-full overflow-hidden pl-6  pr-6 gap-2">
           <svg
             width="13"
             height="17"

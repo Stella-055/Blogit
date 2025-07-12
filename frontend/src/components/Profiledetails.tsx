@@ -37,7 +37,7 @@ const Profiledetails = () => {
     },
 
     onError: (error) => {
-      console.log(error);
+     
       if (axios.isAxiosError(error)) {
         setError(error.response?.data.message);
         return;
@@ -47,7 +47,7 @@ const Profiledetails = () => {
       }
     },
     onSuccess: () => {
-      toast("updated your profile successfully");
+      toast.success("updated your profile successfully");
     },
   });
 
