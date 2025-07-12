@@ -77,6 +77,10 @@ const Createblog = () => {
 
   async function createblog() {
     setError("");
+    if (!image) {
+      setError("No image selected");
+      return;
+    }
     const uploadedUrl = await imageupload();
     if (!uploadedUrl) return setError("error uploading image");
 
