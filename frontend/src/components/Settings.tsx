@@ -53,8 +53,8 @@ const Settings = () => {
   }
   return (
     <div
-      style={{ height: "87vh" }}
-      className="flex flex-wrap justify-center items-center text-center gap-4  "
+     
+      className="flex flex-wrap justify-center items-center text-center gap-4  mb-4  "
     >
       <Profilenav />
       <div>

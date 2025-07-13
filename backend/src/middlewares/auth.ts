@@ -184,3 +184,61 @@ export const checkpasswordvalidity = async (
     res.status(500).json({ message: "something went wrong" });
   }
 };
+  export const checkemail =async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { useremail } = req.body;
+    if (!useremail) {
+      res.status(400).json({ message: "please provide an email" });
+      return;
+    }
+    next()
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+}
+export const checkvalidemail =async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { useremail } = req.body;
+   const email= await  prisma.user.findFirst({
+    where:{useremail:useremail}
+   })
+   if(!email){
+    res.status(400).json({ message: "Provide a valid email" });
+    return
+   }
+    next()
+  } catch (error) {
+    res.status(500).json({ message: "something went wrong" });
+  }
+}
+export const generateopt=async(req: Request, res: Response,next:NextFunction)=>{
+  try {
+    
+ 
+  const{useremail}=req.body
+
+  const otp =Math.floor(100000 + Math.random()*900000)
+  const expotp = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const updateotp=await prisma.user.update({
+    where:{useremail},
+    data:{otp:otp, otpExpiresAt:expotp}
+  })
+  if(!updateotp){
+    res.status(400).json({ message: "Opps unable to generate Otp" });
+    return
+  }
+  next()
+} catch (error) {
+  res.status(500).json({ message: "something went wrong" });
+}
+
+}
+ 

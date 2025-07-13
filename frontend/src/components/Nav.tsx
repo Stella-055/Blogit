@@ -85,6 +85,7 @@ const Nav = () => {
           </Button>
         )}
       </div>
+      {user &&
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <div className="flex flex-col items-center gap-2 mt-5 p-3">
           <Avatar sx={{ width: 56, height: 56 }}>
@@ -124,7 +125,7 @@ const Nav = () => {
             </NavLink>
           </div>
         </div>
-      </Drawer>
+      </Drawer>}
     </>
   );
 };

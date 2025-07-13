@@ -10,6 +10,7 @@ import Protected from "./components/Protected";
 import Blogdetails from "./pages/Blogdetails";
 import Settings from "./components/Settings";
 import Updateblog from "./components/Updateblog";
+import Forgotpas from "./pages/Forgotpas";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<SignUp />} />
+        <Route path="/forgot/password" element={<Forgotpas/>} />
         <Route
           path="/dashboard/:id"
           element={

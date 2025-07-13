@@ -68,10 +68,10 @@ export const updateblog = async (req: Request, res: Response) => {
     const { title, synopsis, content, blogimage } = req.body;
     const updatedblog = await prisma.blog.update({
       where: { id: blogId },
-      data: { title, synopsis, content, blogimage },
+      data: { title, synopsis, content, blogimage,lastUpdated:new Date(Date.now()) },
     });
     updatedblog
-      ? res.status(200).json({ message: "updated blog successfully" })
+      ? res.status(200).json({ message: "updated blog successfull" })
       : res.status(400).json({ message: "Blog does not exist" });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });

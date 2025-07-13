@@ -60,7 +60,7 @@ const SignUp = () => {
   }
   return (
     <div className="flex h-screen justify-center items-center flex-wrap ">
-      <img className="w-96" src="/ww.jpg" alt="leftSideImage" />
+      <img className="w-96  hidden sm:flex" src="/ww.jpg" alt="leftSideImage" />
 
       <div className=" flex flex-col items-center justify-center p-2 ">
         <form className="md:w-96 w-80 flex flex-col items-center justify-center">

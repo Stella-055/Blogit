@@ -1,16 +1,17 @@
 import { Router } from "express";
-import { fetchuserdetails } from "../Controllers/auth.controllers";
+import { fetchuserdetails, sendotp } from "../Controllers/auth.controllers";
 import { checkvaliduser } from "../middlewares/blog";
 import { fetchuserblogs } from "../Controllers/blog.contoller";
 import {
   primaryinfoupdate,
   updateuserpassword,
 } from "../Controllers/auth.controllers";
-import { checkinputupdates } from "../middlewares/auth";
+import { checkinputupdates, generateopt } from "../middlewares/auth";
 import {
   checkpasswordinputs,
   checkpasswordvalidity,
   checkpasswordstrength,
+  checkemail,checkvalidemail
 } from "../middlewares/auth";
 const route = Router();
 
@@ -25,4 +26,5 @@ route.patch(
   checkpasswordstrength,
   updateuserpassword,
 );
+route.post("/forgotpassword",checkemail,checkvalidemail,generateopt ,sendotp)
 export default route;

@@ -51,7 +51,7 @@ const Signin = () => {
 
   return (
     <div className="flex h-screen justify-center items-center flex-wrap ">
-      <img className="w-96" src="/ww.jpg" alt="leftSideImage" />
+      <img className="w-96 hidden sm:flex" src="/ww.jpg" alt="leftSideImage" />
 
       <div className=" flex flex-col items-center justify-center p-2 ">
         <form className="md:w-96 w-80 flex flex-col items-center justify-center">
@@ -130,7 +130,7 @@ const Signin = () => {
               <input className="h-5" type="checkbox" id="checkbox" />
               <label className="text-sm">Remember me</label>
             </div>
-            <a className="text-sm underline" href="/Forgotpassword">
+            <a className="text-sm underline" href="/forgot/password">
               Forgot password?
             </a>
           </div>
