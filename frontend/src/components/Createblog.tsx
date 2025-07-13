@@ -95,7 +95,7 @@ const Createblog = () => {
   return (
     <div
       style={{ height: "90vh" }}
-      className=" flex flex-col items-center justify-center p-2 bg-gray-50  "
+      className=" flex flex-col items-center justify-center p-2  "
     >
       <form className="md:w-96 w-80 flex flex-col items-center justify-center">
         <h2 className="text-4xl text-gray-900 font-medium">BlogIt</h2>

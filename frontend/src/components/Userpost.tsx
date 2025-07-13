@@ -95,10 +95,10 @@ const Userpost = () => {
             return (
               <div
                 key={blog.id}
-                className="p-4 bg-white rounded-lg shadow-sm max-w-80"
+                className="p-4 bg-white rounded-lg shadow-sm w-72"
               >
                 <img
-                  className="rounded-md max-h-40 w-full object-cover"
+                  className="rounded-md h-40 w-full object-cover"
                   src={blog.blogimage}
                   alt="officeImage"
                 />
@@ -107,7 +107,7 @@ const Userpost = () => {
                 </p>
                 <p className="text-gray-500 text-sm my-3 ml-2">
                   {" "}
-                  {blog.synopsis}
+                  {blog.synopsis.slice(0, 25)}...
                 </p>
                 <div className="flex justify-start items-center">
                   <IconButton aria-label="delete">
@@ -147,11 +147,12 @@ const Userpost = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: 350,
             bgcolor: "background.paper",
             border: "2px solid #000",
             boxShadow: 24,
             p: 4,
+            my:4
           }}
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">

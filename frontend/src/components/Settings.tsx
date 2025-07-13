@@ -54,10 +54,10 @@ const Settings = () => {
   return (
     <div
       style={{ height: "87vh" }}
-      className="flex flex-wrap justify-center items-center text-center gap-4 bg-gray-100 "
+      className="flex flex-wrap justify-center items-center text-center gap-4  "
     >
       <Profilenav />
-      <div>
+      <div >
         <h3>Want to change your password?</h3>
         {error && <Alert severity="error">{error}</Alert>}
         <ToastContainer position="top-center" />

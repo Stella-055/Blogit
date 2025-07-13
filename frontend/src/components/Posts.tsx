@@ -62,12 +62,12 @@ const Posts = () => {
   }
 
   return (
-    <div  className="flex flex-col items-center  pt-10 bg-gray-50 h-screen">
+    <div  className="flex flex-col items-center  pt-10  ">
       <h1 className="text-gray-900 text-center font-semibold text-3xl sm:text-4xl md:text-5xl max-w-2xl leading-tight">
         Find the best blogs
         <span className="text-blue-500">with Blogit</span>
       </h1>
-      <div className="flex items-center border pl-4 gap-2 bg-white border-gray-500/30 h-16 rounded-full overflow-hidden max-w-md w-full m-2">
+      <div className="flex items-center border pl-4 gap-2 bg-white border-gray-500/30 h-12 rounded-full overflow-hidden max-w-md w-full m-4 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
