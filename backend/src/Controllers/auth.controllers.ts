@@ -37,7 +37,11 @@ export const signinauth = async (req: Request, res: Response) => {
       process.env.JWT_SECRET!,
     );
 
-    res.cookie("signintoken", token).status(200).json({
+    res.cookie("signintoken", token ,{
+      httpOnly: true,
+      secure: true,
+      sameSite: "none"
+    }).status(200).json({
       id: id,
       username: username,
       lastname: lastname,
