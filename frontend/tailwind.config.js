@@ -7,5 +7,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography')], // ← Needed for `prose`
+  plugins: [require("@tailwindcss/typography")], // ← Needed for `prose`
 };

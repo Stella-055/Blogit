@@ -152,7 +152,7 @@ const Userpost = () => {
             border: "2px solid #000",
             boxShadow: 24,
             p: 4,
-            my:4
+            my: 4,
           }}
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">

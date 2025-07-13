@@ -2,11 +2,11 @@ import Avatar from "@mui/material/Avatar";
 import useUser from "@/stores/userStore";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/Api/Axios";
-import dayjs from "dayjs"
+import dayjs from "dayjs";
 import { Alert, Button } from "@mui/material";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
 const Posts = () => {
   const { user } = useUser();
 
@@ -33,9 +33,10 @@ const Posts = () => {
   });
   const filteredBlogs =
     searchvalue.trim() !== ""
-      ? data?.filter((blog: userblog) =>
-          blog.title.toLowerCase().includes(searchvalue.toLowerCase()) ||
-          blog.synopsis.toLowerCase().includes(searchvalue.toLowerCase())
+      ? data?.filter(
+          (blog: userblog) =>
+            blog.title.toLowerCase().includes(searchvalue.toLowerCase()) ||
+            blog.synopsis.toLowerCase().includes(searchvalue.toLowerCase()),
         )
       : data?.slice(0, 3);
   if (isLoading) {
@@ -62,7 +63,7 @@ const Posts = () => {
   }
 
   return (
-    <div  className="flex flex-col items-center  pt-10  ">
+    <div className="flex flex-col items-center  pt-10  ">
       <h1 className="text-gray-900 text-center font-semibold text-3xl sm:text-4xl md:text-5xl max-w-2xl leading-tight">
         Find the best blogs
         <span className="text-blue-500">with Blogit</span>
@@ -84,14 +85,11 @@ const Posts = () => {
           value={searchvalue}
           onChange={(e) => setSearchvalue(e.target.value)}
         />
-       
       </div>
 
       <div className="flex justify-center items-center gap-2 w-full h-full flex-wrap">
-       
-          {filteredBlogs && filteredBlogs.length > 0 ? (
-            filteredBlogs.map((blog: userblog) => (
-          
+        {filteredBlogs && filteredBlogs.length > 0 ? (
+          filteredBlogs.map((blog: userblog) => (
             <div
               key={blog.id}
               className="relative w-80 bg-white border border-gray-200 rounded-lg shadow-sm"
@@ -103,7 +101,10 @@ const Posts = () => {
               />
 
               <div className="p-5">
-                <h5 style={{textTransform:"capitalize"}} className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                <h5
+                  style={{ textTransform: "capitalize" }}
+                  className="mb-2 text-2xl font-bold tracking-tight text-gray-900"
+                >
                   {blog.title}
                 </h5>
 
@@ -117,12 +118,14 @@ const Posts = () => {
                     alt={blog.authorname}
                     src="/static/images/avataddr/1.jpg"
                   />{" "}
-         
                   <h3 className="text-gray-500">{blog.authorname}</h3>
-                  <Divider orientation="vertical" variant="middle" sx={{border:".5px solid gray", height:"1rem"}}/>
+                  <Divider
+                    orientation="vertical"
+                    variant="middle"
+                    sx={{ border: ".5px solid gray", height: "1rem" }}
+                  />
                   <h3 className="text-gray-500">
-                
-{dayjs(data.createdAt).format("DD MMMM YYYY")}
+                    {dayjs(data.createdAt).format("DD MMMM YYYY")}
                   </h3>
                 </div>
 
@@ -136,8 +139,8 @@ const Posts = () => {
                 </Button>
               </div>
             </div>
-          )))
-        : (
+          ))
+        ) : (
           <Alert severity="info">No blogs found for your search</Alert>
         )}
       </div>

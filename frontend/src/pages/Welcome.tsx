@@ -7,7 +7,7 @@ const Welcome = () => {
     <>
       <Nav />
       <Hero />
-      <Footer/>
+      <Footer />
     </>
   );
 };
