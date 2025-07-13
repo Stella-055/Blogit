@@ -75,6 +75,7 @@ const Profilenav = () => {
             fullWidth
             tabIndex={-1}
             startIcon={<RiLogoutCircleLine />}
+            href="/"
             onClick={logoutuser}
           >
             Signout
