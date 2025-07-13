@@ -41,7 +41,7 @@ const Posts = () => {
       : data?.slice(0, 3);
   if (isLoading) {
     return (
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center h-screen">
         <img src="/Loading_2.gif" alt="Loading..." />
       </div>
     );
