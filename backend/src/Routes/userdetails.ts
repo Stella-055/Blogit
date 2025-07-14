@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { fetchuserdetails, sendotp } from "../Controllers/auth.controllers";
+import { fetchuserdetails, sendotp, verifyotp } from "../Controllers/auth.controllers";
 import { checkvaliduser } from "../middlewares/blog";
 import { fetchuserblogs } from "../Controllers/blog.contoller";
 import {
@@ -35,7 +35,7 @@ route.post(
   sendotp,
 );
 route.post(
-  "/verifyotp",
+  "/forgotpassword/:id",verifyotp
  
 );
 export default route;

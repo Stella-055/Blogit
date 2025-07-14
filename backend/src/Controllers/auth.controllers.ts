@@ -125,7 +125,22 @@ export const sendotp = async (req: Request, res: Response) => {
 };
 export const verifyotp=async (req: Request, res: Response) => {
   try {
-    
+    const{id}=req.params
+    const{otp}=req.body
+    const user =await prisma.user.findFirst({where:{id:id}})
+    if(!user){
+      res.status(400).json({message:"invalid otp"});
+      return
+    }
+    if(!(otp== user.otp)){
+      res.status(400).json({message:"invalid otp"});
+      return
+    }
+    if (user.otpExpiresAt && new Date() > user.otpExpiresAt) {
+      res.status(400).json({message:"Otp expired"});
+      return
+    }
+   res.status(200).json({message:"successfull verification"})
   } catch (error) {
     
   }
