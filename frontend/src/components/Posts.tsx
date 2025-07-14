@@ -63,7 +63,7 @@ const Posts = () => {
   }
 
   return (
-    <div className="flex flex-col items-center  pt-10 h-screen mt-24">
+    <div className="flex flex-col items-center  pt-10 h-screen mt-10">
       <h1 className="text-gray-900 text-center font-semibold text-3xl sm:text-4xl md:text-5xl max-w-2xl leading-tight">
         Find the best blogs
         <span className="text-blue-500">with Blogit</span>
