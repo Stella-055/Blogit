@@ -12,6 +12,7 @@ import Settings from "./components/Settings";
 import Updateblog from "./components/Updateblog";
 import Forgotpas from "./pages/Forgotpas";
 import Otp from "./pages/Otp";
+import Updatepass from "./pages/Updatepass";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/forgot/password" element={<Forgotpas />} />
         <Route path="/forgot/password/:id" element={<Otp />} />
+        <Route path="/update/password/:id" element={<Updatepass />} />
         <Route
           path="/dashboard/:id"
           element={

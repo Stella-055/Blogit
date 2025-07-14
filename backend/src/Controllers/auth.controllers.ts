@@ -142,7 +142,7 @@ export const verifyotp=async (req: Request, res: Response) => {
     }
    res.status(200).json({message:"successfull verification"})
   } catch (error) {
-    
+    res.status(500).json({message:"something went wrong"})
   }
   
 }

@@ -46,7 +46,7 @@ const Forgotpas = () => {
           {errors && <Alert severity="error">{errors}</Alert>}
          
           <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
-            Forget Password?
+            Forgot Password?
           </h2>
           <label htmlFor="email">Email</label>
           <input

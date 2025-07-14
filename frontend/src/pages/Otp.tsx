@@ -38,7 +38,7 @@ const Otp = () => {
     },
     onSuccess: () => {
      
-      navigate("/")
+      navigate(`/update/password/${id}`)
      
     },
   });

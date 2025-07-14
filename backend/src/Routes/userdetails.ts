@@ -6,7 +6,7 @@ import {
   primaryinfoupdate,
   updateuserpassword,
 } from "../Controllers/auth.controllers";
-import { checkinputupdates, generateopt } from "../middlewares/auth";
+import { checkifpassword, checkinputupdates, generateopt } from "../middlewares/auth";
 import {
   checkpasswordinputs,
   checkpasswordvalidity,
@@ -36,6 +36,10 @@ route.post(
 );
 route.post(
   "/forgotpassword/:id",verifyotp
+ 
+);
+route.post(
+  "/updatepassword/:id",checkifpassword,checkpasswordstrength,updateuserpassword
  
 );
 export default route;
