@@ -42,7 +42,7 @@ const Blogdetails = () => {
       )}
       {data && (
         <div className="flex justify-center flex-col items-center mt-4 ">
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl mb-3">
+          <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl mb-3 mt-24">
             {data.title.toUpperCase()}
           </h1>
           <div className="flex gap-4  items-center flex-wrap sm:justify-start justify-center ">
