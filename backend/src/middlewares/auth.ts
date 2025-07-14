@@ -64,20 +64,22 @@ export const checkemailandusername = async (
   }
 };
 
-export const checkifpassword=async(req: Request, res: Response, next: NextFunction,)=>{
+export const checkifpassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
-  
-    const {password}=req.body
-    if(!password){
-      res.status(400).json({message:"Please provide a password"});
-
+    const { password } = req.body;
+    if (!password) {
+      res.status(400).json({ message: "Please provide a password" });
     }
 
-next()
-
+    next();
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
-  }}
+  }
+};
 export const checkpasswordstrength = (
   req: Request,
   res: Response,
@@ -252,7 +254,7 @@ export const generateopt = async (
       res.status(400).json({ message: "Opps unable to generate Otp" });
       return;
     }
- 
+
     next();
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });

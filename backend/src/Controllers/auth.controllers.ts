@@ -118,31 +118,30 @@ export const sendotp = async (req: Request, res: Response) => {
       subject: "Account Verification Otp",
       text: `Hello ${user.username},Your Otp is ${user.otp}.Use this to verify thsi account as yours.If you did not request an Otp please ignore it. We got it under control`,
     });
-    res.status(200).json({ person:user.id });
+    res.status(200).json({ person: user.id });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
 };
-export const verifyotp=async (req: Request, res: Response) => {
+export const verifyotp = async (req: Request, res: Response) => {
   try {
-    const{id}=req.params
-    const{otp}=req.body
-    const user =await prisma.user.findFirst({where:{id:id}})
-    if(!user){
-      res.status(400).json({message:"invalid otp"});
-      return
+    const { id } = req.params;
+    const { otp } = req.body;
+    const user = await prisma.user.findFirst({ where: { id: id } });
+    if (!user) {
+      res.status(400).json({ message: "invalid otp" });
+      return;
     }
-    if(!(otp== user.otp)){
-      res.status(400).json({message:"invalid otp"});
-      return
+    if (!(otp == user.otp)) {
+      res.status(400).json({ message: "invalid otp" });
+      return;
     }
     if (user.otpExpiresAt && new Date() > user.otpExpiresAt) {
-      res.status(400).json({message:"Otp expired"});
-      return
+      res.status(400).json({ message: "Otp expired" });
+      return;
     }
-   res.status(200).json({message:"successfull verification"})
+    res.status(200).json({ message: "successfull verification" });
   } catch (error) {
-    res.status(500).json({message:"something went wrong"})
+    res.status(500).json({ message: "something went wrong" });
   }
-  
-}
+};

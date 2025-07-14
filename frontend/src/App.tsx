@@ -24,7 +24,14 @@ function App() {
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/forgot/password" element={<Forgotpas />} />
         <Route path="/forgot/password/:id" element={<Otp />} />
-        <Route path="/update/password/:id" element={<Verified><Updatepass /></Verified> } />
+        <Route
+          path="/update/password/:id"
+          element={
+            <Verified>
+              <Updatepass />
+            </Verified>
+          }
+        />
         <Route
           path="/dashboard/:id"
           element={

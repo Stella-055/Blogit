@@ -1,4 +1,5 @@
 ## BLOGIT
+
 This is afullstack application that allows users to create an account ,signin create blogs and manage them.
 
 Users can also read blogs from other people

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Forgotpas = () => {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
   type usremail = {
     useremail: string;
   };
@@ -31,9 +31,7 @@ const Forgotpas = () => {
       }
     },
     onSuccess: (data) => {
-     
-      navigate(`/forgot/password/${data.person}`)
-     
+      navigate(`/forgot/password/${data.person}`);
     },
   });
   function verifyemail() {
@@ -44,7 +42,7 @@ const Forgotpas = () => {
       <div>
         <div className="bg-white text-gray-500 max-w-96 mx-4 md:p-6 p-4 text-left text-sm rounded shadow-[0px_0px_10px_0px] shadow-black/10">
           {errors && <Alert severity="error">{errors}</Alert>}
-         
+
           <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
             Forgot Password?
           </h2>

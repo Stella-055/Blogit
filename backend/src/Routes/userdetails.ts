@@ -1,12 +1,20 @@
 import { Router } from "express";
-import { fetchuserdetails, sendotp, verifyotp } from "../Controllers/auth.controllers";
+import {
+  fetchuserdetails,
+  sendotp,
+  verifyotp,
+} from "../Controllers/auth.controllers";
 import { checkvaliduser } from "../middlewares/blog";
 import { fetchuserblogs } from "../Controllers/blog.contoller";
 import {
   primaryinfoupdate,
   updateuserpassword,
 } from "../Controllers/auth.controllers";
-import { checkifpassword, checkinputupdates, generateopt } from "../middlewares/auth";
+import {
+  checkifpassword,
+  checkinputupdates,
+  generateopt,
+} from "../middlewares/auth";
 import {
   checkpasswordinputs,
   checkpasswordvalidity,
@@ -34,12 +42,11 @@ route.post(
   generateopt,
   sendotp,
 );
+route.post("/forgotpassword/:id", verifyotp);
 route.post(
-  "/forgotpassword/:id",verifyotp
- 
-);
-route.post(
-  "/updatepassword/:id",checkifpassword,checkpasswordstrength,updateuserpassword
- 
+  "/updatepassword/:id",
+  checkifpassword,
+  checkpasswordstrength,
+  updateuserpassword,
 );
 export default route;
