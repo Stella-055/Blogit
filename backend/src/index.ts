@@ -10,7 +10,7 @@ app.use(cookie());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://blogingit.netlify.app",
+    origin: ["https://blogingit.netlify.app","http://localhost:5173'"],
     credentials: true,
   }),
 );
