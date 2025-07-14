@@ -52,7 +52,7 @@ const Settings = () => {
     mutate(passworddata);
   }
   return (
-    <div className="flex flex-wrap justify-center items-center text-center gap-4  mb-4  ">
+    <div className="flex flex-wrap justify-center items-center text-center gap-4  mb-4 mt-24  ">
       <Profilenav />
       <div>
         <h3>Want to change your password?</h3>
