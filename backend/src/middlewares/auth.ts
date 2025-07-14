@@ -214,6 +214,7 @@ export const checkvalidemail = async (
       res.status(400).json({ message: "Provide a valid email" });
       return;
     }
+
     next();
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
@@ -237,6 +238,7 @@ export const generateopt = async (
       res.status(400).json({ message: "Opps unable to generate Otp" });
       return;
     }
+ 
     next();
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });

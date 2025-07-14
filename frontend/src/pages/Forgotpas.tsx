@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import api from "@/Api/Axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+
 const Forgotpas = () => {
     const navigate=useNavigate()
   type usremail = {
@@ -30,9 +30,9 @@ const Forgotpas = () => {
         return;
       }
     },
-    onSuccess: () => {
-      toast.info("An Otp has been sent to that email");
-      navigate("/forgot/password/otp")
+    onSuccess: (data) => {
+     
+      navigate(`/forgot/password/${data.person}`)
      
     },
   });
@@ -44,7 +44,7 @@ const Forgotpas = () => {
       <div>
         <div className="bg-white text-gray-500 max-w-96 mx-4 md:p-6 p-4 text-left text-sm rounded shadow-[0px_0px_10px_0px] shadow-black/10">
           {errors && <Alert severity="error">{errors}</Alert>}
-          <ToastContainer position="top-center" />
+         
           <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
             Forget Password?
           </h2>

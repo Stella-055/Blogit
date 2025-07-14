@@ -34,4 +34,8 @@ route.post(
   generateopt,
   sendotp,
 );
+route.post(
+  "/verifyotp",
+ 
+);
 export default route;

@@ -118,8 +118,16 @@ export const sendotp = async (req: Request, res: Response) => {
       subject: "Account Verification Otp",
       text: `Hello ${user.username},Your Otp is ${user.otp}.Use this to verify thsi account as yours.If you did not request an Otp please ignore it. We got it under control`,
     });
-    res.status(200).json({ message: "An Otp has been sent" });
+    res.status(200).json({ person:user.id });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
 };
+export const verifyotp=async (req: Request, res: Response) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+  
+}
