@@ -56,6 +56,7 @@ const Settings = () => {
      
       <div className="flex flex-wrap justify-center items-center text-center gap-4  mt-24  " >
       <Profilenav />
+      <div>
         <h3>Want to change your password?</h3>
         {error && <Alert severity="error">{error}</Alert>}
         <ToastContainer position="top-center" />
@@ -164,7 +165,7 @@ const Settings = () => {
           Update password
         </Button>
       </div>
-    </div>
+    </div></div>
   );
 };
 
