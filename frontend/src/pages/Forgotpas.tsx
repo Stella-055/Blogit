@@ -1,12 +1,14 @@
 import { Alert } from "@mui/material";
-import Otp from "@/components/Otp";
+
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import api from "@/Api/Axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 const Forgotpas = () => {
+    const navigate=useNavigate()
   type usremail = {
     useremail: string;
   };
@@ -30,7 +32,8 @@ const Forgotpas = () => {
     },
     onSuccess: () => {
       toast.info("An Otp has been sent to that email");
-      return <Otp />;
+      navigate("/forgot/password/otp")
+     
     },
   });
   function verifyemail() {

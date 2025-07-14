@@ -11,6 +11,7 @@ import Blogdetails from "./pages/Blogdetails";
 import Settings from "./components/Settings";
 import Updateblog from "./components/Updateblog";
 import Forgotpas from "./pages/Forgotpas";
+import Otp from "./pages/Otp";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/forgot/password" element={<Forgotpas />} />
+        <Route path="/forgot/password/otp" element={<Otp />} />
         <Route
           path="/dashboard/:id"
           element={
