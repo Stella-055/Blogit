@@ -11,7 +11,8 @@ import {
   checkpasswordinputs,
   checkpasswordvalidity,
   checkpasswordstrength,
-  checkemail,checkvalidemail
+  checkemail,
+  checkvalidemail,
 } from "../middlewares/auth";
 const route = Router();
 
@@ -26,5 +27,11 @@ route.patch(
   checkpasswordstrength,
   updateuserpassword,
 );
-route.post("/forgotpassword",checkemail,checkvalidemail,generateopt ,sendotp)
+route.post(
+  "/forgotpassword",
+  checkemail,
+  checkvalidemail,
+  generateopt,
+  sendotp,
+);
 export default route;

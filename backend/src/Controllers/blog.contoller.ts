@@ -68,7 +68,13 @@ export const updateblog = async (req: Request, res: Response) => {
     const { title, synopsis, content, blogimage } = req.body;
     const updatedblog = await prisma.blog.update({
       where: { id: blogId },
-      data: { title, synopsis, content, blogimage,lastUpdated:new Date(Date.now()) },
+      data: {
+        title,
+        synopsis,
+        content,
+        blogimage,
+        lastUpdated: new Date(Date.now()),
+      },
     });
     updatedblog
       ? res.status(200).json({ message: "updated blog successfull" })

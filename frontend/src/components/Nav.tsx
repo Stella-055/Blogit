@@ -85,47 +85,48 @@ const Nav = () => {
           </Button>
         )}
       </div>
-      {user &&
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        <div className="flex flex-col items-center gap-2 mt-5 p-3">
-          <Avatar sx={{ width: 56, height: 56 }}>
-            {user!.username.slice(0, 1)}
-          </Avatar>{" "}
-          <div className=" flex-col flex gap-2 p-3">
-            <NavLink
-              to={`/dashboard/${user!.id}/Blogs`}
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-300 p-1 rounded"
-                  : "bg-white transition-all hover:bg-gray-300 p-1 rounded"
-              }
-            >
-              Blogs
-            </NavLink>
-            <NavLink
-              to={`/dashboard/${user!.id}/Createblog`}
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-300 p-1 rounded "
-                  : "bg-white transition-all hover:bg-gray-300 p-1 rounded"
-              }
-            >
-              Create Blog
-            </NavLink>
-            <NavLink
-              to={`/dashboard/${user!.id}/Profile`}
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gray-300 p-1 rounded flex  gap-1 items-center"
-                  : "bg-white transition-all hover:bg-gray-300 p-1 rounded flex gap-1 items-center "
-              }
-            >
-              <CgProfile />
-              Profile
-            </NavLink>
+      {user && (
+        <Drawer open={open} onClose={toggleDrawer(false)}>
+          <div className="flex flex-col items-center gap-2 mt-5 p-3">
+            <Avatar sx={{ width: 56, height: 56 }}>
+              {user!.username.slice(0, 1)}
+            </Avatar>{" "}
+            <div className=" flex-col flex gap-2 p-3">
+              <NavLink
+                to={`/dashboard/${user!.id}/Blogs`}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-gray-300 p-1 rounded"
+                    : "bg-white transition-all hover:bg-gray-300 p-1 rounded"
+                }
+              >
+                Blogs
+              </NavLink>
+              <NavLink
+                to={`/dashboard/${user!.id}/Createblog`}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-gray-300 p-1 rounded "
+                    : "bg-white transition-all hover:bg-gray-300 p-1 rounded"
+                }
+              >
+                Create Blog
+              </NavLink>
+              <NavLink
+                to={`/dashboard/${user!.id}/Profile`}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-gray-300 p-1 rounded flex  gap-1 items-center"
+                    : "bg-white transition-all hover:bg-gray-300 p-1 rounded flex gap-1 items-center "
+                }
+              >
+                <CgProfile />
+                Profile
+              </NavLink>
+            </div>
           </div>
-        </div>
-      </Drawer>}
+        </Drawer>
+      )}
     </>
   );
 };

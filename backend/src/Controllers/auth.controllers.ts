@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Transporter } from "nodemailer";
-import { transporter } from '../nodemailer/Transpoter';
+import { transporter } from "../nodemailer/Transpoter";
 const prisma = new PrismaClient();
 
 export const signupauth = async (req: Request, res: Response) => {
@@ -37,16 +37,19 @@ export const signinauth = async (req: Request, res: Response) => {
       process.env.JWT_SECRET!,
     );
 
-    res.cookie("signintoken", token ,{
-      httpOnly: true,
-      secure: true,
-      sameSite: "none"
-    }).status(200).json({
-      id: id,
-      username: username,
-      lastname: lastname,
-      firstname: firstname,
-    });
+    res
+      .cookie("signintoken", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      })
+      .status(200)
+      .json({
+        id: id,
+        username: username,
+        lastname: lastname,
+        firstname: firstname,
+      });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
@@ -98,27 +101,25 @@ export const updateuserpassword = async (req: Request, res: Response) => {
   }
 };
 
-export const sendotp =async(req: Request, res: Response)=>{
+export const sendotp = async (req: Request, res: Response) => {
   try {
-    const{useremail}=req.body
-    const user= await prisma.user.findFirst({
-      where:{useremail}
-    })
-    if(!user){
-      res.status(400).json({message:"No account found"})
-      return
+    const { useremail } = req.body;
+    const user = await prisma.user.findFirst({
+      where: { useremail },
+    });
+    if (!user) {
+      res.status(400).json({ message: "No account found" });
+      return;
     }
 
-    await  transporter.sendMail({
+    await transporter.sendMail({
       from: process.env.SENDER_EMAIL,
       to: useremail,
       subject: "Account Verification Otp",
-      text: `Hello ${user.username},Your Otp is ${user.otp}.Use this to verify thsi account as yours.If you did not request an Otp please ignore it. We got it under control`
-    
+      text: `Hello ${user.username},Your Otp is ${user.otp}.Use this to verify thsi account as yours.If you did not request an Otp please ignore it. We got it under control`,
     });
-    res.status(200).json({message:"An Otp has been sent"})
+    res.status(200).json({ message: "An Otp has been sent" });
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
   }
-
-}
+};

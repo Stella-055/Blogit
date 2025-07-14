@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 
 const Welcome = () => {
   return (
-    < div className="h-screen">
+    <div className="h-screen">
       <Nav />
       <Hero />
       <Footer />
