@@ -97,7 +97,7 @@ const Createblog = () => {
       style={{ height: "90vh" }}
       className=" flex flex-col items-center justify-center p-2  "
     >
-      <form className="md:w-96 w-80 flex flex-col items-center justify-center mt-96">
+      <form className="md:w-96 w-80 flex flex-col items-center justify-center mt-72">
         <h2 className="text-4xl text-gray-900 font-medium">BlogIt</h2>
         <p className="text-sm text-gray-500/90 mt-3">
           Welcome To BlogIt!Create your blog today
