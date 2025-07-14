@@ -11,8 +11,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Alert} from "@mui/material";
 import { useParams } from "react-router-dom";
-   
+import useUser from "../stores/userStore";
 const Otp = () => {
+   const {  setverified } = useUser();
   const navigate=useNavigate()
   type userotp={
     otp:string
@@ -37,7 +38,7 @@ const Otp = () => {
       }
     },
     onSuccess: () => {
-     
+     setverified()
       navigate(`/update/password/${id}`)
      
     },

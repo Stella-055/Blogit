@@ -13,6 +13,7 @@ import Updateblog from "./components/Updateblog";
 import Forgotpas from "./pages/Forgotpas";
 import Otp from "./pages/Otp";
 import Updatepass from "./pages/Updatepass";
+import Verified from "./components/Verified";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/forgot/password" element={<Forgotpas />} />
         <Route path="/forgot/password/:id" element={<Otp />} />
-        <Route path="/update/password/:id" element={<Updatepass />} />
+        <Route path="/update/password/:id" element={<Verified><Updatepass /></Verified> } />
         <Route
           path="/dashboard/:id"
           element={

@@ -6,6 +6,8 @@ interface UserStoreType {
   user: { username: string; id: string } | null;
   setUserName: (user: { username: string; id: string }) => void;
   logoutuser: () => void;
+  setverified:()=> void;
+  isverified:boolean
 }
 
 const userStore: StateCreator<UserStoreType> = (set) => {
@@ -17,6 +19,10 @@ const userStore: StateCreator<UserStoreType> = (set) => {
     logoutuser: () => {
       return set({ user: null });
     },
+    isverified:false,
+    setverified:()=>{
+      return set({ isverified:true})
+    }
   };
 };
 
