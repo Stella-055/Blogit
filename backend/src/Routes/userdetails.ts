@@ -8,7 +8,7 @@ import { checkvaliduser } from "../middlewares/blog";
 import { fetchuserblogs } from "../Controllers/blog.contoller";
 import {
   primaryinfoupdate,
-  updateuserpassword,
+  updateuserpassword,updatepassword
 } from "../Controllers/auth.controllers";
 import {
   checkifpassword,
@@ -47,6 +47,6 @@ route.post(
   "/updatepassword/:id",
   checkifpassword,
   checkpasswordstrength,
-  updateuserpassword,
+  updatepassword
 );
 export default route;
