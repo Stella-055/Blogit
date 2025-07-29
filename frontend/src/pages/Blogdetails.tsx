@@ -113,7 +113,33 @@ const Blogdetails = () => {
           </div>
 
           <div className="prose prose-lg mb-4 ">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}
+               components={{
+                  h1: ({ ...props }) => (
+                    <h1 className="text-3xl font-bold mb-4" {...props} />
+                  ),
+                  h2: ({ ...props }) => (
+                    <h2 className="text-2xl font-semibold mt-6 mb-2" {...props} />
+                  ),
+                  p: ({ ...props }) => (
+                    <p className="text-base text-gray-700 mb-4" {...props} />
+                  ),
+                  ul: ({ ...props }) => (
+                    <ul className="list-disc pl-6 mb-4" {...props} />
+                  ),
+                  li: ({ ...props }) => <li className="mb-1" {...props} />,
+                  a: ({ ...props }) => (
+                    <a
+                      className="text-blue-500 underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      {...props}
+                    />
+                  ),
+                  code: ({ ...props }) => (
+                    <code className="bg-gray-100 px-1 rounded" {...props} />
+                  ),
+                }}>
               {data.content}
             </ReactMarkdown>
           </div>
