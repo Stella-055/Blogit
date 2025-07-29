@@ -31,12 +31,12 @@ const Blogdetails = () => {
   return (
     <>
       {error && (
-        <div className="w-full flex justify-center items-center pt-4">
+        <div className="w-full flex justify-center items-center h-screen ">
           <img src="/500.jpg" alt="" />
         </div>
       )}
       {isLoading && (
-        <div className="w-full flex justify-center items-center pt-4 ">
+        <div className="w-full flex justify-center items-center h-screen  ">
           <img src="/Loading_2.gif" alt="" />{" "}
         </div>
       )}
