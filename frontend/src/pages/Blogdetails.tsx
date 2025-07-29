@@ -41,7 +41,7 @@ const Blogdetails = () => {
         </div>
       )}
       {data && (
-        <div className="flex justify-center flex-col items-center mt-4 ">
+        <div className="flex justify-center flex-col items-center pt-4 ">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl mb-3 mt-24">
             {data.title.toUpperCase()}
           </h1>
@@ -112,7 +112,7 @@ const Blogdetails = () => {
             <img src={data.blogimage} alt="" className=" h-full w-full " />
           </div>
 
-          <div className="prose prose-lg mb-4 ">
+          <div className="prose prose-lg mb-4 text-center">
             <ReactMarkdown remarkPlugins={[remarkGfm]}
                components={{
                   h1: ({ ...props }) => (
