@@ -38,7 +38,7 @@ const Posts = () => {
             blog.title.toLowerCase().includes(searchvalue.toLowerCase()) ||
             blog.synopsis.toLowerCase().includes(searchvalue.toLowerCase()),
         )
-      : data?.slice(0, 3);
+      : data;
   if (isLoading) {
     return (
       <div className="w-full flex justify-center items-center h-screen">
