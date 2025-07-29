@@ -15,7 +15,7 @@ const Nav = () => {
   };
   return (
     <>
-      <div className="p-5 flex justify-between items-center border shadow-sm bg-white fixed w-screen  ">
+      <div className="p-5 flex justify-between items-center border shadow-sm bg-white fixed w-screen z-10 ">
         <div className="flex items-center">
           <img src="/logoipsum-295.png" alt="logo" className="w-9" />
           <NavLink to="/">
